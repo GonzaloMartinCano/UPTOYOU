@@ -9,6 +9,17 @@ h1 {
     margin-bottom: 30px;
 }
 
-Navbar {
-    font-weight: 900;
+/* h8 {
+    height:20px; 
+    width:100px; 
+    margin: -50px -50px; 
+    position: inherit;
+    top:-50%; 
+    left:50%;
+} */
+
+.chekmiproducto  {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
 }

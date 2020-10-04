@@ -8,9 +8,9 @@ import Button from 'react-bootstrap/Button'
 const Index = () => {
     return (
         <Container>
-            <h1>UP TO YOYU</h1>
+            <h3>UP TO YOU</h3>
             <Link to="/products">
-                <Button size="sm" variant="dark" style={{ marginTop: '20px' }}>Ver montañas rusas</Button>
+                <Button size="sm" variant="dark" style={{ marginTop: '20px' }}>Ver productos</Button>
             </Link>
         </Container>
     )

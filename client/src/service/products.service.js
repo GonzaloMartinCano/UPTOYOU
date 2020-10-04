@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export default class CoasterService {
+export default class ProductsService {
 
     constructor() {
         this.api = axios.create({
@@ -10,7 +10,8 @@ export default class CoasterService {
     }
 
     getAllProducts = () => this.api.get('/getAllProducts')
-    getOneCoaster = id => this.api.get(`/getOneCoaster/${id}`)
-    saveCoaster = coaster => this.api.post('/newCoaster', coaster)
+    getOneProduct = id => this.api.get(`/getOneProduct/${id}`)
+    getMyProducts = userID => this.api.get(`/getMyProducts/${userID}`)
+    newProduct = product => this.api.post('/newProduct', product)
     updateCoaster = (id, coaster) => this.api.put(`/editCoaster/${id}`, coaster)
 }

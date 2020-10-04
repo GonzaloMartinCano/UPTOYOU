@@ -3,20 +3,19 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import coasterService from '../../../service/products.service'
+import productsService from '../../../service/products.service'
 
-class NewCoaster extends Component {
+class NewProduct extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            title: '',
+            name: '',
             description: '',
-            inversions: '',
-            length: '',
-            imageUrl: '',
-            owner: this.props.loggedInUser ? this.props.loggedInUser._id : ''
+            price: '',
+            image: '',
+            userID: this.props.loggedInUser ? this.props.loggedInUser._id : ''
         }
-        this.coasterService = new coasterService()
+        this.productsService = new productsService()
     }
 
     handleInputChange = e => {
@@ -27,12 +26,13 @@ class NewCoaster extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
 
-        this.coasterService
-            .saveCoaster(this.state)
+        this.productsService
+            .newProduct(this.state)
             .then(() => {
                 this.props.closeModal()
-                this.props.refreshList()
+               
             })
+            .then(() =>  this.props.refreshList())
             .catch(err => console.log('Erroro!!', { err }))
     }
 
@@ -46,7 +46,7 @@ class NewCoaster extends Component {
             <Form onSubmit={this.handleFormSubmit}>
                 <Form.Group>
                     <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />
+                    <Form.Control type="text" name="name" value={this.state.name} onChange={this.handleInputChange} />
                 </Form.Group>
 
                 <Form.Group>
@@ -55,24 +55,20 @@ class NewCoaster extends Component {
                 </Form.Group>
 
                 <Form.Group>
-                    <Form.Label>Longitud</Form.Label>
-                    <Form.Control type="text" name="length" value={this.state.length} onChange={this.handleInputChange} />
+                    <Form.Label>Precio</Form.Label>
+                    <Form.Control type="text" name="price" value={this.state.price} onChange={this.handleInputChange} />
                 </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Inversiones</Form.Label>
-                    <Form.Control type="text" name="inversions" value={this.state.inversions} onChange={this.handleInputChange} />
-                </Form.Group>
 
                 <Form.Group>
                     <Form.Label>Imagen (URL)</Form.Label>
-                    <Form.Control type="text" name="imageUrl" value={this.state.imageUrl} onChange={this.handleInputChange} />
+                    <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
                 </Form.Group>
 
-                <Button variant="dark" type="submit">Crear montaña rusa</Button>
+                <Button variant="dark" type="submit">Añadir Producto</Button>
             </Form>
         )
     }
 }
 
-export default NewCoaster
+export default NewProduct

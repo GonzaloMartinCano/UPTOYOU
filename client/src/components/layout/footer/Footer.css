@@ -1,6 +1,6 @@
 footer {
-    background: #333b3f;
-    color: white;
+    background-image: linear-gradient(0deg, #2BA84A 0%, #ffffff 100%);
+    color: black;
     font-size: .6em;
     text-align: center;
     padding: 4px;

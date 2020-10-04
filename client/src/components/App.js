@@ -45,11 +45,11 @@ class App extends Component {
           <Route path="/" exact render={() => <Index />} />
 
           <Route path="/products" exact render={() => <ProductsList loggedInUser={this.state.loggedInUser} />} />
-          <Route path="/products/details/:coaster_id" render={props => <ProductsDetails {...props} />} />
+          <Route path="/products/details/:product_id" render={props => <ProductsDetails {...props} />} />
 
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
-          <Route path="/profile" render={() => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} /> : <Redirect to="/login" />} />
+          <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...props}/> : <Redirect to="/login" />} />
         </Switch>
         <Footer />
       </>

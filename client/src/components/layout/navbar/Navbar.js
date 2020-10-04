@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
+import './Navbar.css' 
 
 import logo from './logo.png'
 
@@ -25,7 +26,7 @@ export default class extends Component {
 
     render() {
         return (
-            <Navbar expand="lg" style={{backgroundColor: "#2BA84A", color: "white", marginBottom: '40px' }}>
+            <Navbar expand="lg" className="bg-custom-2" style={{paddingBottom: "10px", marginBottom: "20px"}}>
                 <Link to="/">
                     <Navbar.Brand >
                         <img
@@ -43,14 +44,14 @@ export default class extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto"  >
                         <Link className="nav-link" to="/">Inicio</Link>
-                        <Link className="nav-link" to="/coasters">Productos</Link>
+                        <Link className="nav-link" to="/products">Productos</Link>
                         {!this.props.loggedInUser && <Link className="nav-link" to="/signup">Registro</Link>}
                         {!this.props.loggedInUser && <Link className="nav-link" to="/login">Acceder</Link>}
                         {this.props.loggedInUser && <div className="nav-link" onClick={this.logoutUser}>Cerrar sesión</div>}
                         <Link className="nav-link" to="/profile">- Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</Link>
                     </Nav>
                 </Navbar.Collapse>
-            </Navbar >
+            </Navbar>
         )
     }
 }
