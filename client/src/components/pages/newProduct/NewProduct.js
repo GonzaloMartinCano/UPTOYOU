@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-import coasterService from '../../../service/coasters.service'
+import coasterService from '../../../service/products.service'
 
 class NewCoaster extends Component {
     constructor(props) {

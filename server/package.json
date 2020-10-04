@@ -7,7 +7,7 @@
     "dev": "DEBUG=express-generator:* nodemon ./bin/www",
     "dev-windows": "nodemon ./bin/www",
     "data:import": "node seeder",
-    "data:destroy": "seeder -d"
+    "data:destroy": "node seeder -d"
   },
   "dependencies": {
     "bcrypt": "^5.0.0",

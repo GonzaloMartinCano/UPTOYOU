@@ -3,17 +3,17 @@ const bcrypt = require('bcryptjs')
 const users = [
   {
     username: 'Admin',
-    password: bcrypt.hashSync('password', 10),
+    password: 'Admin',
     isAdmin: true,
   },
   {
     username: 'Test1',
-    password: bcrypt.hashSync('password', 10),
+    password: 'Test1',
     isAdmin: false,
   },
   {
     username: 'Test2',
-    password: bcrypt.hashSync('password', 10),
+    password: 'Test2n',
     isAdmin: false,
   },
 ]

@@ -5,13 +5,13 @@ import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
 
-import coasterService from './../../../service/coasters.service'
-import CoasterCard from './CoasterCard'
-import NewCoasterForm from './../newCoaster/NewCoaster'
+import productsService from '../../../service/products.service'
+import ProductCard from './ProductCard'
+import NewCoasterForm from '../newProduct/NewProduct'
 
-import Spinner from './../../shared/spinner/Spinner'
+import Spinner from '../../shared/spinner/Spinner'
 
-import './CoastersList.css'
+import './ProductsList.css'
 
 class ProductsList extends Component {
     constructor() {
@@ -20,13 +20,13 @@ class ProductsList extends Component {
             products: [],
             showModal: false
         }
-        this.coasterService = new coasterService()
+        this.productsService = new productsService()
     }
 
     componentDidMount = () => this.loadCoasters()
 
     loadCoasters = () => {
-        this.coasterService
+        this.productsService
             .getAllProducts()
             .then(response => this.setState({ products: response.data }))
             .catch(err => console.log('Error:', err))
@@ -45,7 +45,7 @@ class ProductsList extends Component {
                             {
                                 this.state.products.length
                                     ?
-                                    this.state.products.map(elm => <CoasterCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)
+                                    this.state.products.map(elm => <ProductCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} />)
                                     :
                                     <Spinner />
                             }

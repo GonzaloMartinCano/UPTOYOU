@@ -9,7 +9,7 @@ const User = require('../models/userModel')
 module.exports = app => {
 
     app.use(session({
-        secret: "webmad0820",
+        secret: "UPTOYOU",
         resave: true,
         saveUninitialized: true
     }))

@@ -5,7 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
-import coasterService from './../../../service/coasters.service'
+import coasterService from '../../../service/products.service'
 
 class CoasterDetails extends Component {
     constructor() {
@@ -37,7 +37,7 @@ class CoasterDetails extends Component {
                             <p>Longitud: {this.state.length}</p>
                             <p>Inversiones: {this.state.inversions}</p>
                             <hr />
-                            <Link to="/coasters" className="btn btn-dark btn-sm">Volver al índice</Link>
+                            <Link to="/products" className="btn btn-dark btn-sm">Volver al índice</Link>
                         </Col>
                         <Col md={6}>
                             <img style={{ width: '100%' }} alt={this.state.title} src={this.state.imageUrl} />

@@ -5,8 +5,8 @@ import Navigation from './layout/navbar/Navbar'
 import Footer from './layout/footer/Footer'
 
 import Index from './pages/index/Index'
-import CoastersList from './pages/coastersList/CoastersList'
-import CoasterDetails from './pages/coasterDetails/CoasterDetails'
+import ProductsList from './pages/productsList/ProductsList'
+import ProductsDetails from './pages/productsDetails/ProductsDetails'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
 import Profile from './pages/profile/Profile'
@@ -44,8 +44,8 @@ class App extends Component {
         <Switch>
           <Route path="/" exact render={() => <Index />} />
 
-          <Route path="/coasters" exact render={() => <CoastersList loggedInUser={this.state.loggedInUser} />} />
-          <Route path="/coasters/details/:coaster_id" render={props => <CoasterDetails {...props} />} />
+          <Route path="/products" exact render={() => <ProductsList loggedInUser={this.state.loggedInUser} />} />
+          <Route path="/products/details/:coaster_id" render={props => <ProductsDetails {...props} />} />
 
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />

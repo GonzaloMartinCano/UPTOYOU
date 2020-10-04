@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
-const CoasterCard = ({ _id, name, image, loggedInUser, userID }) => {
+const ProductCard = ({ _id, name, image, loggedInUser, userID }) => {
 
     return (
         <Col md={4}>
@@ -19,10 +19,10 @@ const CoasterCard = ({ _id, name, image, loggedInUser, userID }) => {
                         ?
                         <ButtonGroup style={{ width: '100%' }}>
                             <Button className="btn btn-dark btn-sm" onClick={() => alert('TE LO CURRAS')}>Editar</Button>
-                            <Link to={`/coasters/details/${_id}`} className="btn btn-dark btn-sm">Detalles</Link>
+                            <Link to={`/products/details/${_id}`} className="btn btn-dark btn-sm">Detalles</Link>
                         </ButtonGroup>
                         :
-                        <Link to={`/coasters/details/${_id}`}>
+                        <Link to={`/products/details/${_id}`}>
                             <Button variant="dark" size="sm" block>Detalles</Button>
                         </Link>
                     }
@@ -33,4 +33,4 @@ const CoasterCard = ({ _id, name, image, loggedInUser, userID }) => {
     )
 }
 
-export default CoasterCard
+export default ProductCard
