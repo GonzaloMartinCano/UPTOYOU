@@ -11,7 +11,7 @@ Marketplace to encourage local shopping and create a sustainable network
 |  /products | GET  | GUEST / USER / ADMIN  | ALL PRODUCTS |
 |  | GET  |  ADMIN  | ALL PRODUCTS, CAN SEE SPECIAL BUTTON ON THEIR PRODUCTS   |
 |  /products/details/:product_id | GET  | GUEST / USER / ADMIN  | PRODUCT DETAILS   |
-|  /profile | GET  | GUEST  | REDIRECT TO LOGIN  |
+|  /profile/:user_id | GET  | GUEST  | REDIRECT TO LOGIN  |
 |   | GET  | USER  | USER PROFILE VIEW |
 |  | GET  | ADMIN  | ADMIN AND USER PROFILE VIEW |
 
