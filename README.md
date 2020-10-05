@@ -1,6 +1,6 @@
 # UPTOYOU
 
-Marketplace to encourage local shopping and create a sustainable network
+Marketplace to create a sustainable network promoting local purchases
 
 
 
