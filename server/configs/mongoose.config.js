@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
-const connectionString = `mongodb://localhost/${process.env.DB_LOCAL}`
+// const connectionString = `mongodb://localhost/${process.env.DB_LOCAL}`
+const connectionString=(`${process.env.DB_REMOTE}`)
 
 mongoose
     .connect(connectionString, { useNewUrlParser: true, useUnifiedTopology: true })

@@ -13,5 +13,7 @@ export default class ProductsService {
     getOneProduct = id => this.api.get(`/getOneProduct/${id}`)
     getMyProducts = userID => this.api.get(`/getMyProducts/${userID}`)
     newProduct = product => this.api.post('/newProduct', product)
-    updateCoaster = (id, coaster) => this.api.put(`/editCoaster/${id}`, coaster)
+    getMyCart = id => this.api.get(`/getMycart/${id}`)
+    addToCart = (productID, userID) => this.api.post(`/addToCart/${productID}/${userID}`)
+    // updateProduct = (id, product) => this.api.put(`/updateProduct/${id}`, product)
 }

@@ -50,15 +50,15 @@ class Profile extends Component {
                     {this.props.loggedInUser.isAdmin && <div>
                         <h5> Este es tu perfil de administrador, aqui podrás editar todos los productos de tu tienda </h5><br></br>
                         <Button onClick={() => this.handleModal(true)} style={{ marginBottom: '20px' }} variant="dark" size="sm">Añadir producto</Button>
-                    </div>}
+                    
 
                     <Row>
                             {
                                 this.state.products.length
                                     ?
                                 this.state.products.map(elm => 
-                                    <Col md={4}>
-                                    <h8 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h8>
+                                    <Col md={4} key={elm.index}>
+                                    <h6 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h6>
                                     <ProductCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} click={() => this.handleModal(true)}/>
                                     </Col>
                                 )
@@ -66,7 +66,7 @@ class Profile extends Component {
                                     <Spinner />
                             }
                     </Row>
-
+                    </div>}
 
 
                     {/* COMUN PARA TODOS LOS PERFILES */}

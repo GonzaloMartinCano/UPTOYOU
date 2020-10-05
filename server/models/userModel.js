@@ -25,10 +25,10 @@ const UserSchema = new mongoose.Schema(
       required: true,
       default: false,
     },
-    products: {
-      type: [mongoose.Schema.Types.ObjectId],
-      ref: 'product',
-    },
+    products: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Product',
+    }],
   },
   {
     timestamps: true,

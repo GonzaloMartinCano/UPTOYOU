@@ -45,7 +45,7 @@ class ProductsList extends Component {
                             {
                                 this.state.products.length
                                     ?
-                                    this.state.products.map(elm => <Col md={4}><ProductCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} /></Col>)
+                                    this.state.products.map(elm => <Col md={4} key={elm.index}><ProductCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} /></Col>)
                                     :
                                     <Spinner />
                             }

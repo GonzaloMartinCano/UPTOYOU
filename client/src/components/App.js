@@ -10,6 +10,7 @@ import ProductsDetails from './pages/productsDetails/ProductsDetails'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
 import Profile from './pages/profile/Profile'
+import Cart from './pages/cart/Cart'
 
 import authService from './../service/auth.service'
 
@@ -45,11 +46,13 @@ class App extends Component {
           <Route path="/" exact render={() => <Index />} />
 
           <Route path="/products" exact render={() => <ProductsList loggedInUser={this.state.loggedInUser} />} />
-          <Route path="/products/details/:product_id" render={props => <ProductsDetails {...props} />} />
+          <Route path="/products/details/:product_id" render={props => <ProductsDetails {...props} loggedInUser={this.state.loggedInUser}/>} />
 
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
-          <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...props}/> : <Redirect to="/login" />} />
+          <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to="/login" />} />
+          <Route path="/cart" render={(props) => this.state.loggedInUser ? <Cart loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to="/login" />} />
+
         </Switch>
         <Footer />
       </>
