@@ -16,4 +16,6 @@ Marketplace to encourage local shopping and create a sustainable network
 |  /profile/:user_id | GET  | GUEST  | REDIRECT TO LOGIN  |
 |   | GET  | USER  | USER PROFILE VIEW |
 |  | GET  | ADMIN  | ADMIN AND USER PROFILE VIEW |
+|  /profile/:user_id | POST  | USER  | EDIT INFO  |
+|  | GET  | POST  | EDIT ADMIN, PRODUCTS AND USER INFO |
 
