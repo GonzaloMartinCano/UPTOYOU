@@ -4,7 +4,7 @@ export default class ProductsService {
 
     constructor() {
         this.api = axios.create({
-            baseURL: env.process.REACT_APP_API_URL,
+            baseURL: process.env.REACT_APP_API_URL,
             withCredentials: true
         })
     }
