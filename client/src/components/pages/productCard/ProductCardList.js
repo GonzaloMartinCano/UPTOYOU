@@ -6,7 +6,7 @@ import Card from 'react-bootstrap/Card'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
-const ProductCard = ({ _id, name, image, loggedInUser, userID, click }) => {
+const ProductCard = ({ _id, name, image, loggedInUser, userID}) => {
 
     return (
 

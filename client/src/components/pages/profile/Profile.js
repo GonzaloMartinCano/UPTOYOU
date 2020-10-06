@@ -7,11 +7,10 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import Modal from 'react-bootstrap/Modal'
-import Card from 'react-bootstrap/Card'
 import Col from 'react-bootstrap/Col'
 
 
-import ProductCard from './../productsList/ProductCard'
+import ProductCardProfile from './../productCard/ProductCardProfile'
 import NewProductForm from '../newProduct/NewProduct'
 import Spinner from '../../shared/spinner/Spinner'
 
@@ -58,8 +57,7 @@ class Profile extends Component {
                                     ?
                                 this.state.products.map(elm => 
                                     <Col md={4} key={elm.index}>
-                                    <h6 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h6>
-                                    <ProductCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} click={() => this.handleModal(true)}/>
+                                    <ProductCardProfile loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} click={() => this.handleModal(true)}/>
                                     </Col>
                                 )
                                     :
@@ -80,17 +78,6 @@ class Profile extends Component {
 
                 {/* MODAL PARA AÑADIR NUEVO PRODUCTO ADMIN*/}
 
-                <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Nuevo producto</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
-                        <NewProductForm loggedInUser={this.props.loggedInUser} closeModal={() => this.handleModal(false)} refreshList={this.loadProducts} />
-                    </Modal.Body>
-                </Modal>
-                
-                {/* MODAL PARA EDITAR NUEVO PRODUCTO ADMIN*/}
-                
                 <Modal show={this.state.showModal} onHide={() => this.handleModal(false)}>
                     <Modal.Header closeButton>
                         <Modal.Title>Nuevo producto</Modal.Title>

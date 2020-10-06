@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col'
 
 
 import productsService from '../../../service/products.service'
-import ProductCard from './ProductCard'
+import ProductCardList from './../productCard/ProductCardList'
 
 
 import Spinner from '../../shared/spinner/Spinner'
@@ -45,9 +45,9 @@ class ProductsList extends Component {
                             {
                                 this.state.products.length
                                     ?
-                                    this.state.products.map(elm => <Col md={4} key={elm.index}><ProductCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} /></Col>)
+                                    this.state.products.map((elm, index) => <Col md={4} key={index}><ProductCardList  loggedInUser={this.props.loggedInUser} {...elm} /></Col>)
                                     :
-                                    <Spinner />
+                                    <Spinner key='spinner' />
                             }
                         </Row>
                     </main>

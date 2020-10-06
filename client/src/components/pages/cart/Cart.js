@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 
 
-import ProductCard from './../productsList/ProductCard'
+import ProductCardList from './../productCard/ProductCardList'
 import Spinner from '../../shared/spinner/Spinner'
 
 
@@ -17,7 +17,7 @@ class Cart extends Component {
     constructor() {
         super()
         this.state = {
-            products: [],
+            cart: [],
             showModal: false
         }
         this.productsService = new productsService()
@@ -28,7 +28,7 @@ class Cart extends Component {
     loadProducts = () => {
         this.productsService
             .getMyCart(this.props.loggedInUser._id)
-            .then(response => this.setState({ products: response.data.products }))
+            .then(response => this.setState({ cart: response.data.cart }))
             .catch(err => console.log('Error:', err))
     }
 
@@ -45,12 +45,12 @@ class Cart extends Component {
 
                     <Row>
                             {
-                                this.state.products.length
+                                this.state.cart.length
                                     ?
-                                this.state.products.map(elm => 
+                                this.state.cart.map(elm => 
                                     <Col md={4}>
-                                    <h8 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h8>
-                                    <ProductCard loggedInUser={this.props.loggedInUser} key={elm._id} {...elm}/>
+                                    {/* <h8 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h8> */}
+                                    <ProductCardList loggedInUser={this.props.loggedInUser} key={elm._id} {...elm}/>
                                     </Col>
                                 )
                                     :

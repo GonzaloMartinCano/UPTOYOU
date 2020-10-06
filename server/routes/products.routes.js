@@ -53,38 +53,42 @@ router.get('/getMyCart/:userID', (req, res) => {
     //     return
     // }
 
-    User.findOne({ username: 'gonzalo' })
-        .populate('products')
+    User.findById({ _id: req.params.userID })
+        .populate('cart')
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
 
 router.post('/addToCart/:productId/:userId', (req, res, next) => {
 
+    Product.findByIdAndUpdate(req.params.productId, {stock: req.body.stock - 1})
+        .then(() => next)
+        .catch(err => res.status(500).json(err))
+
     User.findById(req.params.userId)
         .then((user) => {
-            let newProducts = user.products
+            let newProducts = user.cart
             let newId = req.params.productId
             newProducts.push(newId)
-            User.findByIdAndUpdate(req.params.userId, { products: newProducts })
-                .then(() =>  res.json(response))
+            User.findByIdAndUpdate(req.params.userId, { cart: newProducts })
+                .then((response) => res.json(response))
                 .catch(err => console.log(err))
         })
         .catch(err => res.status(500).json(err))
 })
 
 
-// router.put('/editCoaster/:coaster_id', (req, res, next) => {
+router.put('/updateProduct/:product_id', (req, res, next) => {
 
-//     if (!mongoose.Types.ObjectId.isValid(req.params.coaster_id)) {
-//         res.status(400).json({ message: 'Specified id is not valid' })
-//         return
-//     }
+    // if (!mongoose.Types.ObjectId.isValid(req.params.product_id)) {
+    //     res.status(400).json({ message: 'Specified id is not valid' })
+    //     return
+    // }
 
-//     Coaster.findByIdAndUpdate(req.params.coaster_id, req.body)
-//         .then(response => res.json(response))
-//         .catch(err => res.status(500).json(err))
-// })
+    Product.findByIdAndUpdate(req.params.product_id, req.body)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
 
 
 module.exports = router
