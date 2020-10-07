@@ -11,7 +11,6 @@ import ProductCardList from './../productCard/ProductCardList'
 
 import Spinner from '../../shared/spinner/Spinner'
 
-import './ProductsList.css'
 
 class ProductsList extends Component {
     constructor() {

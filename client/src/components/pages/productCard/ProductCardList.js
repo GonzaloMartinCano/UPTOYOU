@@ -6,14 +6,15 @@ import Card from 'react-bootstrap/Card'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
-const ProductCard = ({ _id, name, image, loggedInUser, userID}) => {
+const ProductCard = ({ _id, name, image, loggedInUser, userID, stock}) => {
 
     return (
 
-            <Card className="coaster-card">
+            <Card className="product-card">
                 <Card.Img variant="top" src={image} />
                 <Card.Body>
                     <h4>{name}</h4>
+                    <h4>En stock: {stock}</h4>
 
                     {loggedInUser && loggedInUser._id === userID
                         ?
