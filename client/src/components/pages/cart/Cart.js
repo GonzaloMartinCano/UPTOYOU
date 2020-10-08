@@ -9,7 +9,7 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 
 
-import ProductCardList from './../productCard/ProductCardList'
+import ProductCardCart from './../productCard/ProductCardCart'
 import Spinner from '../../shared/spinner/Spinner'
 
 
@@ -39,18 +39,16 @@ class Cart extends Component {
             <>
                 <Container>
                     
-                  
-        
-                    <h2>¡Bienvenid@ a tu car, {this.props.loggedInUser.username}!</h2><br></br>
+                    <h2>¡Bienvenid@ a tu Cart, {this.props.loggedInUser.username}!</h2><br></br>
 
                     <Row>
                             {
                                 this.state.cart.length
                                     ?
-                                this.state.cart.map(elm => 
-                                    <Col md={4}>
+                                this.state.cart.map((elm, index) => 
+                                    <Col md={7} key={index}>
                                     {/* <h8 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h8> */}
-                                    <ProductCardList loggedInUser={this.props.loggedInUser} key={elm._id} {...elm}/>
+                                        <ProductCardCart loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} index={index}/>
                                     </Col>
                                 )
                                     :

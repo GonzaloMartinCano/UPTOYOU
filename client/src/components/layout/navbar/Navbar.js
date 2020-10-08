@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import './Navbar.css' 
@@ -50,6 +51,7 @@ export default class extends Component {
                         {!this.props.loggedInUser && <Link className="nav-link" to="/login">Acceder</Link>}
                         {this.props.loggedInUser && <div className="nav-link" onClick={this.logoutUser}>Cerrar sesión</div>}
                         <Link className="nav-link" to="/profile">- Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</Link>
+                
                     </Nav>
                 </Navbar.Collapse>
             </Navbar>

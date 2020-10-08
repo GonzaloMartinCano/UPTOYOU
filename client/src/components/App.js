@@ -8,6 +8,7 @@ import Index from './pages/index/Index'
 import ProductsList from './pages/productsList/ProductsList'
 import ProductDetails from './pages/productDetails/ProductDetails'
 import ProductEdit from './pages/productEdit/ProductEdit'
+import ProductDelete from './pages/productDelete/ProductDelete'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
 import Profile from './pages/profile/Profile'
@@ -49,7 +50,9 @@ class App extends Component {
           <Route path="/products" exact render={() => <ProductsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/products/details/:product_id" render={props => <ProductDetails {...props} loggedInUser={this.state.loggedInUser}/>} />
           <Route path="/products/edit/:product_id" render={(props) => this.state.loggedInUser ? <ProductEdit {...props} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
+          <Route path="/products/delete/:product_id" render={(props) => this.state.loggedInUser ? <ProductDelete {...props} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
 
+          
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to="/login" />} />

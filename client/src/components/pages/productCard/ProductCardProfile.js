@@ -16,7 +16,8 @@ const ProductCard = ({ _id, name, image, stock}) => {
                 <h4>En stock: {stock}</h4>
 
                     <ButtonGroup style={{ width: '100%' }}>
-                            <Link to={`/products/edit/${_id}`} className="btn btn-dark btn-sm">Editar producto</Link>
+                        <Link to={`/products/delete/${_id}`} className="btn btn-dark btn-sm">Eliminar producto</Link>
+                        <Link to={`/products/edit/${_id}`} className="btn btn-dark btn-sm">Editar producto</Link>
                     </ButtonGroup>
                 
                 </Card.Body>

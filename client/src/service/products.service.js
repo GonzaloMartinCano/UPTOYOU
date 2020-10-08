@@ -14,6 +14,7 @@ export default class ProductsService {
     getMyProducts = userID => this.api.get(`/getMyProducts/${userID}`)
     newProduct = product => this.api.post('/newProduct', product)
     getMyCart = id => this.api.get(`/getMycart/${id}`)
-    addToCart = (productID, userID, stock) => this.api.post(`/addToCart/${productID}/${userID}`, {stock})
+    addToCart = (productID, userID, stock, quantity) => this.api.post(`/addToCart/${productID}/${userID}`, {stock, quantity},)
     updateProduct = (id, product) => this.api.put(`/updateProduct/${id}`, product)
+    deleteProduct = (id) => this.api.put(`/deleteProduct/${id}`)
 }
