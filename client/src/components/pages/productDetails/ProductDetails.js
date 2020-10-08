@@ -35,7 +35,7 @@ class ProductDetails extends Component {
     }
 
     addToCart = (quantity) => {
-        console.log(this.state.product.stock)
+
         if (this.state.product.stock >= this.state.quantity) {
             this.productsService
             .addToCart(this.state.product._id, this.props.loggedInUser._id, this.state.product.stock, quantity)
@@ -49,7 +49,6 @@ class ProductDetails extends Component {
     }
 
     handleInputChange = e => {
-        console.log(e.target.value)
         this.setState( {quantity: e.target.value})
     }
 

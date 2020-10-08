@@ -18,18 +18,27 @@ class Cart extends Component {
         super()
         this.state = {
             cart: [],
+            totalPrice: 0,
             showModal: false
         }
         this.productsService = new productsService()
     }
 
-    componentDidMount = () => this.loadProducts()
-
+    componentDidMount = () => {
+        this.loadProducts()
+        
+    }
     loadProducts = () => {
         this.productsService
             .getMyCart(this.props.loggedInUser._id)
             .then(response => this.setState({ cart: response.data.cart }))
             .catch(err => console.log('Error:', err))
+    }
+
+    calculateTotal = (price) => {
+        console.log("ESTAMOS=====", price)
+        let newTotal = price
+        this.setState({totalPrice: price})
     }
 
 
@@ -48,7 +57,7 @@ class Cart extends Component {
                                 this.state.cart.map((elm, index) => 
                                     <Col md={7} key={index}>
                                     {/* <h8 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h8> */}
-                                        <ProductCardCart loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} index={index}/>
+                                        <ProductCardCart loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} index={index} calculateTotal={() => this.calculateTotal()}/>
                                     </Col>
                                 )
                                     :
@@ -56,6 +65,7 @@ class Cart extends Component {
                             }
                     </Row>
 
+                    <h1>PRECIO TOTAL: {this.state.totalPrice}</h1>
 
 
                     {/* COMUN PARA TODOS LOS PERFILES */}

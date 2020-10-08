@@ -88,11 +88,13 @@ router.get('/getMyCart/:userID', (req, res) => {
 
 router.post('/addToCart/:productId/:userId', (req, res, next) => {
 
-    let newStock = req.body.stock - req.body.quantity
-    console.log( req.body.quantity)
-    Product.findByIdAndUpdate(req.params.productId, {stock: newStock}) 
-        .then(() => next)
-        .catch(err => res.status(500).json(err))
+    // SI QUISIERA QUITAR DEL STOCK LOS ARTICULOS 
+
+    // let newStock = req.body.stock - req.body.quantity
+
+    // Product.findByIdAndUpdate(req.params.productId, {stock: newStock}) 
+    //     .then(() => next)
+    //     .catch(err => res.status(500).json(err))
 
     User.findById(req.params.userId)
         .then((user) => {
@@ -126,6 +128,23 @@ router.post('/addToCart/:productId/:userId', (req, res, next) => {
 
         })
         .catch(err => res.status(500).json(err))
+})
+
+router.put('/editCart/:userId/:index', (req, res, next) => { 
+
+
+    console.log("aqui llegamos", req.params.userId, req.body.quantity, req.params.index)
+
+    User.findById(req.params.userId)
+        .then(user => {
+            let newQuantity = user.quantityInCart
+            newQuantity[req.params.index] = req.body.quantity
+            User.findByIdAndUpdate(req.params.userId, { quantityInCart: newQuantity })
+                .then((response) => res.json(response))
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+
 })
 
 
