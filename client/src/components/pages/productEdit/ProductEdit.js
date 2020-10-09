@@ -38,7 +38,7 @@ class EditProduct extends Component {
     }
 
     render() {
-        console.log(this.state)
+
         return (
 
             <Container>

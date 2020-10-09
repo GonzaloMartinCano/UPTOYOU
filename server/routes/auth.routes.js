@@ -4,6 +4,7 @@ const passport = require("passport")
 const bcrypt = require("bcrypt")
 
 const User = require("../models/userModel")
+const Cart = require("../models/cartModel")
 
 
 router.post('/signup', (req, res, next) => {
@@ -41,6 +42,7 @@ router.post('/signup', (req, res, next) => {
             password: hashPass
         });
 
+
         aNewUser.save(err => {
             if (err) {
                 res.status(500).json({ message: 'Error saving user to DB' });
@@ -61,6 +63,12 @@ router.post('/signup', (req, res, next) => {
                 res.status(200).json(aNewUser);
             });
         });
+
+         //Create a cart for each new user
+        Cart.create({ userID: aNewUser._id })
+            .then(() => res.status(200).json(aNewUser))
+            .catch(err => res.status(500).json({ message: 'Error saving user to DB' }))
+        
     });
 });
 

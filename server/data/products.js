@@ -28,7 +28,7 @@ const products = [
     numReviews: 2,
   },
   {
-    name: 'Spanish Apples',
+    name: 'Apples de Murcia',
     image: 'https://picsum.photos/200?random=6',
     description: 'Spanish Apples from Spain, Very Spanish, Very Apples',
     userID: '1' /** Se referira al user en la base de datos */,
@@ -42,7 +42,7 @@ const products = [
     numReviews: 10,
   },
   {
-    name: 'Spanish Potatoes',
+    name: 'Spanish HotDogs',
     image: 'https://picsum.photos/200?random=3',
     description: 'Spanish Potatoes from Spain, Very Spanish, Very Potaoes',
     userID: '2' /** Se referira al user en la base de datos */,
@@ -56,7 +56,7 @@ const products = [
     numReviews: 0,
   },
   {
-    name: 'Spanish Oranges',
+    name: 'Nueces Galegas',
     image: 'https://picsum.photos/200?random=4',
     description: 'Spanish Oranges from Spain, Very Spanish, Very Oranges',
     userID: '2' /** Se referira al user en la base de datos */,
@@ -70,7 +70,7 @@ const products = [
     numReviews: 1,
   },
   {
-    name: 'Spanish Apples',
+    name: 'Piñones de Navarone',
     image: 'https://picsum.photos/200?random=5',
     description: 'Spanish Apples from Spain, Very Spanish, Very Apples',
     userID: '2' /** Se referira al user en la base de datos */,

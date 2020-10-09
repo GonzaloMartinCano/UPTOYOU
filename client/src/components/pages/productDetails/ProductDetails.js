@@ -9,6 +9,7 @@ import Form from 'react-bootstrap/Form'
 import miproducto from './../productCard/miproducto.png'
 
 
+import cartService from '../../../service/cart.service'
 import productsService from '../../../service/products.service'
 
 class ProductDetails extends Component {
@@ -24,6 +25,7 @@ class ProductDetails extends Component {
             },
             quantity: 1
         }
+        this.cartService = new cartService()
         this.productsService = new productsService()
     }
 
@@ -37,7 +39,7 @@ class ProductDetails extends Component {
     addToCart = (quantity) => {
 
         if (this.state.product.stock >= this.state.quantity) {
-            this.productsService
+            this.cartService
             .addToCart(this.state.product._id, this.props.loggedInUser._id, this.state.product.stock, quantity)
             .then(() => this.componentDidMount)
             .then(() => alert("hecho"))
@@ -51,7 +53,6 @@ class ProductDetails extends Component {
     handleInputChange = e => {
         this.setState( {quantity: e.target.value})
     }
-
 
     render() {
 

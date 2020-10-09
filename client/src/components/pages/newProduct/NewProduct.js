@@ -30,14 +30,10 @@ class NewProduct extends Component {
             .newProduct(this.state)
             .then(() => {
                 this.props.closeModal()
-               
             })
             .then(() =>  this.props.refreshList())
             .catch(err => console.log('Erroro!!', { err }))
     }
-
-
-
 
     render() {
 

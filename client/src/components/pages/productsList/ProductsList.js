@@ -36,21 +36,21 @@ class ProductsList extends Component {
     render() {
         return (
 
-                <Container>
-                    <main>
-                        <h1>Listado de productos</h1>
-                        
-                        <Row>
-                            {
-                                this.state.products.length
-                                    ?
-                                    this.state.products.map((elm, index) => <Col md={4} key={index}><ProductCardList  loggedInUser={this.props.loggedInUser} {...elm} /></Col>)
-                                    :
-                                    <Spinner key='spinner' />
-                            }
-                        </Row>
-                    </main>
-                </Container>
+            <Container>
+                <main>
+                    <h1>Listado de productos</h1>
+                    
+                    <Row>
+                        {
+                        this.state.products.length
+                            ?
+                        this.state.products.map((elm, index) => <Col md={4} key={index}><ProductCardList  loggedInUser={this.props.loggedInUser} {...elm} /></Col>)
+                        :
+                        <Spinner key='spinner' />
+                        }
+                    </Row>
+                </main>
+            </Container>
 
         )
     }

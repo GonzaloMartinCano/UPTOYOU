@@ -42,7 +42,7 @@ class Profile extends Component {
             <>
                 <Container>
                     
-                    {/* ZONA ADMIN */}
+                {/* ZONA ADMIN */}
         
                     <h2>¡Bienvenid@ a tu perfil, {this.props.loggedInUser.username}!</h2><br></br>
 
@@ -67,13 +67,12 @@ class Profile extends Component {
                     </div>}
 
 
-                    {/* COMUN PARA TODOS LOS PERFILES */}
+                {/* COMUN PARA TODOS LOS PERFILES */}
             
                     <Link to="/products">
                         <Button size="sm" variant="dark" style={{ marginTop: '20px' }}>Volver a Inicio</Button>
                     </Link>
                 </Container>
-
 
 
                 {/* MODAL PARA AÑADIR NUEVO PRODUCTO ADMIN*/}

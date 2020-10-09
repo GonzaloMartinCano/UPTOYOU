@@ -13,7 +13,7 @@ const users = [
   },
   {
     username: 'Test2',
-    password: 'Test2n',
+    password: 'Test2',
     isAdmin: false,
   },
 ]

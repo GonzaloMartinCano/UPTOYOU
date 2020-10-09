@@ -9,70 +9,69 @@ import Form from 'react-bootstrap/Form'
 
 import Spinner from '../../shared/spinner/Spinner'
 
-import productsService from '../../../service/products.service'
+import cartService from '../../../service/cart.service'
 
 
  class ProductCardCart extends Component {
     constructor(props) {
         super()
         this.state = {}
-        this.productsService = new productsService()
+        this.cartService = new cartService()
     
     }
 
     componentDidMount = () => {
-        this.productsService
+        this.cartService
             .getMyCart(this.props.loggedInUser._id)
-            .then(response => this.setState(response.data))
+            .then(response => this.setState(response.data.products))
+            .then(() => this.props.calculateTotal(this.props.refID.price * this.state[this.props.index].quantity))
             .catch(err => console.log('Error:', err))
     }
      
      handleInputChange = e => {
-        let newQuantity = this.state.quantityInCart
-        newQuantity[this.props.index] = e.target.value
-        this.setState({ quantity: newQuantity })
+        
+        // Calculate total
+         if (this.state[this.props.index].quantity > e.target.value) 
+            this.props.calculateTotal(-this.props.refID.price)
+         else
+            this.props.calculateTotal(this.props.refID.price)
+ 
+        // Upload Cart
+        let newProducts = this.state
+        newProducts[this.props.index].quantity = e.target.value
+        this.setState({newProducts})
          
-        this.productsService
-             .editCart(this.props.loggedInUser._id, e.target.value, this.props.index)
-             .then(() => {  // el carrito llega aqui
-                 this.productsService
-                     .getMyCart(this.props.loggedInUser._id)
-                     .then(response => this.setState(response.data))
-                     .catch(err => console.log('Error:', err))
-             })
+        this.cartService
+            .editCart(this.props.loggedInUser._id, e.target.value, this.props.index)
             .catch(err => console.log('Error:', err))
-        this.props.calculateTotal(250000000000)
+         
      }
      
-
-        
-
     render() {
         
         return (
     
             <ListGroup horizontal>
-            <ListGroup.Item ><Link to={`/products/details/${this.props._id}`}><img style={{width: '100px'}} src={this.props.image} alt={this.props.name}></img></Link></ListGroup.Item>
-            <ListGroup.Item >Atículo <hr/> {this.props.name}</ListGroup.Item>
-                 <ListGroup.Item>Cantidad <hr /> {this.state.quantityInCart
-                     ?
-                                <Form.Group>
-
-                                    <Form.Control  name="quantity" type="number" min="1" max={this.props.stock} placeholder="1" value={this.state.quantityInCart[this.props.index]} onChange={this.handleInputChange}  />
+            <ListGroup.Item ><Link to={`/products/details/${this.props.refID._id}`}><img style={{width: '100px'}} src={this.props.refID.image} alt={this.props.refID.name}></img></Link></ListGroup.Item>
+            <ListGroup.Item >Atículo <hr/> {this.props.refID.name}</ListGroup.Item>
+                <ListGroup.Item>Cantidad
+                    <hr />
+                    {this.state[this.props.index]
+                        ?
+                    <Form.Group>
+                        <Form.Control  name="quantity" type="number" min="1" max={this.props.refID.stock} placeholder="1" value={this.state[this.props.index].quantity} onChange={this.handleInputChange}  />
                     </Form.Group>
-                    
-                    
-                     :
-                     <Spinner />}</ListGroup.Item>
-            <ListGroup.Item>€/unidad <hr/> {this.props.price}</ListGroup.Item>
-                <ListGroup.Item >SubTotal <hr /> {this.state.quantityInCart ? <p>{this.props.price * this.state.quantityInCart[this.props.index]}€ </p> : <Spinner />} </ListGroup.Item>
-            <ListGroup.Item><ButtonGroup style={{ width: '100%' }}>
-                                <Link to={`/products/details/${this.props._id}`} className="btn btn-dark btn-sm">Detalles</Link>
-                            </ButtonGroup>
+                        :
+                    <Spinner />}
+                </ListGroup.Item>
+                <ListGroup.Item>€/unidad <hr/> {this.props.refID.price}</ListGroup.Item>
+                    <ListGroup.Item >SubTotal <hr /> {this.state[this.props.index] ? <p>{this.props.refID.price * this.state[this.props.index].quantity}€ </p> : <Spinner />} </ListGroup.Item>
+                <ListGroup.Item>
+                    <ButtonGroup style={{ width: '100%' }}>
+                    <Link to={`/products/details/${this.props._id}`} className="btn btn-dark btn-sm">Detalles</Link>
+                    </ButtonGroup>
                 </ListGroup.Item>
             </ListGroup>
-
-
          )
      }
 }
