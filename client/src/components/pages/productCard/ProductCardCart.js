@@ -34,7 +34,7 @@ import productsService from '../../../service/products.service'
          
         this.productsService
              .editCart(this.props.loggedInUser._id, e.target.value, this.props.index)
-             .then(() => {
+             .then(() => {  // el carrito llega aqui
                  this.productsService
                      .getMyCart(this.props.loggedInUser._id)
                      .then(response => this.setState(response.data))

@@ -36,7 +36,7 @@ class Cart extends Component {
     }
 
     calculateTotal = (price) => {
-        console.log("ESTAMOS=====", price)
+        alert("ESTAMOS=====   " + price)
         let newTotal = price
         this.setState({totalPrice: price})
     }
@@ -57,7 +57,7 @@ class Cart extends Component {
                                 this.state.cart.map((elm, index) => 
                                     <Col md={7} key={index}>
                                     {/* <h8 onClick={() => this.handleModal(true)} variant="dark" size="xs">Editar</h8> */}
-                                        <ProductCardCart loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} index={index} calculateTotal={() => this.calculateTotal()}/>
+                                        <ProductCardCart loggedInUser={this.props.loggedInUser} key={elm._id} {...elm} index={index} calculateTotal={this.calculateTotal}/>
                                     </Col>
                                 )
                                     :
