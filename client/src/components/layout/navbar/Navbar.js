@@ -9,13 +9,16 @@ import './Navbar.css'
 import logo from './logo.png'
 
 import authService from './../../../service/auth.service'
+import cartService from '../../../service/cart.service'
 
 
 export default class extends Component {
 
     constructor(props) {
-        super(props)
+        super()
+        this.state = []
         this.authService = new authService()
+        this.cartService = new cartService()
     }
 
     logoutUser = () => {
@@ -23,6 +26,19 @@ export default class extends Component {
             .logout()
             .then(() => this.props.setTheUser(null))
             .catch(err => console.log('ERRORR!!:', err))
+    }
+
+    componentDidMount = () => this.loadCart()
+
+    loadCart = () => {
+        console.log("VEEEENGOOO")
+        if (this.props.loggedInUser) {
+            this.cartService
+                .getMyCart(this.props.loggedInUser._id)
+                .then(response => console.log("aaaaaaaaaaaaaaaaaaa", response))
+                .catch(err => console.log('Error:', err))
+        }
+            
     }
 
     render() {
@@ -45,7 +61,7 @@ export default class extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto"  >
                         <Link className="nav-link" to="/">Inicio</Link>
-                        {this.props.loggedInUser && <Link className="nav-link" to="/cart">Cart</Link>}
+                        {this.props.loggedInUser && <Link className="nav-link" to="/cart">Cart {this.state}</Link>}
                         <Link className="nav-link" to="/products">Productos</Link>
                         {!this.props.loggedInUser && <Link className="nav-link" to="/signup">Registro</Link>}
                         {!this.props.loggedInUser && <Link className="nav-link" to="/login">Acceder</Link>}
