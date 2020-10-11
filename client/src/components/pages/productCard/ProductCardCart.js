@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
 
 import Spinner from '../../shared/spinner/Spinner'
 
@@ -44,32 +45,30 @@ import cartService from '../../../service/cart.service'
             .catch(err => console.log('Error:', err))
          
      }
+
+
+
+
      
     render() {
         
         return (
+
+            <tr>
+            <td><Link to={`/products/details/${this.props.refID._id}`}><img style={{width: '100px'}} src={this.props.refID.image} alt={this.props.refID.name}></img></Link></td>
+            <td>{this.props.refID.name}</td>
+            <td>{this.state[this.props.index]
+                    ?
+                <Form.Group>
+                    <Form.Control  name="quantity" type="number" min="1" max={this.props.refID.stock} placeholder="1" value={this.state[this.props.index].quantity} onChange={this.handleInputChange}  />
+                </Form.Group>
+                    :
+                <Spinner />}</td>
+                <td>{this.props.refID.price} €</td>
+                <td>{this.state[this.props.index] ? <p>{this.props.refID.price * this.state[this.props.index].quantity}€ </p> : <Spinner />}</td>
+                <td ><Button style={{fontWeight: "800"}} onClick={this.props.deleteProductCart} className="btn btn-danger btn-sm">x</Button></td>
+          </tr>
     
-            <ListGroup horizontal>
-            <ListGroup.Item ><Link to={`/products/details/${this.props.refID._id}`}><img style={{width: '100px'}} src={this.props.refID.image} alt={this.props.refID.name}></img></Link></ListGroup.Item>
-            <ListGroup.Item >Atículo <hr/> {this.props.refID.name}</ListGroup.Item>
-                <ListGroup.Item>Cantidad
-                    <hr />
-                    {this.state[this.props.index]
-                        ?
-                    <Form.Group>
-                        <Form.Control  name="quantity" type="number" min="1" max={this.props.refID.stock} placeholder="1" value={this.state[this.props.index].quantity} onChange={this.handleInputChange}  />
-                    </Form.Group>
-                        :
-                    <Spinner />}
-                </ListGroup.Item>
-                <ListGroup.Item>€/unidad <hr/> {this.props.refID.price}</ListGroup.Item>
-                    <ListGroup.Item >SubTotal <hr /> {this.state[this.props.index] ? <p>{this.props.refID.price * this.state[this.props.index].quantity}€ </p> : <Spinner />} </ListGroup.Item>
-                <ListGroup.Item>
-                    <ButtonGroup style={{ width: '100%' }}>
-                    <Link to={`/products/details/${this.props._id}`} className="btn btn-dark btn-sm">Detalles</Link>
-                    </ButtonGroup>
-                </ListGroup.Item>
-            </ListGroup>
          )
      }
 }

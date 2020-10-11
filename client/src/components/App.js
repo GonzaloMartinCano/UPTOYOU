@@ -15,6 +15,7 @@ import Profile from './pages/profile/Profile'
 import Cart from './pages/cart/Cart'
 
 import authService from './../service/auth.service'
+import CartService from './../service/cart.service'
 
 import './App.css'
 
@@ -23,15 +24,20 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      loggedInUser: undefined
+      loggedInUser: undefined,
+      products: []
     }
     this.authService = new authService()
+    this.cartService = new CartService()
   }
 
 
-  componentDidMount = () => this.fetchUser()
+  componentDidMount = () => {
+    this.fetchUser()
 
-  setTheUser = user => this.setState({ loggedInUser: user }, () => console.log('El usuario es', this.state.loggedInUser))
+  }
+
+  setTheUser = user => this.setState({ loggedInUser: user })
 
   fetchUser = () => {
     this.authService
@@ -40,10 +46,23 @@ class App extends Component {
       .catch(err => this.setState({ loggedInUser: null }))
   }
 
+  // loadCart = () => {
+    
+    //   if (this.props.loggedInUser) {
+      //     console.log("entro por aquiiiiiiiiiiiii")
+      //       this.cartService
+      //           .getMyCart(this.props.loggedInUser._id)
+      //           .then(response => this.setState({ products: response.data.products }))
+      //           .catch(err => console.log('Error:', err))
+      //   }
+   // }
+        
+
   render() {
+
     return (
       <>
-        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} />
+        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} products={this.state.products} />
         <Switch>
           <Route path="/" exact render={() => <Index />} />
 

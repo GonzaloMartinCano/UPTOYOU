@@ -7,11 +7,11 @@ import InputGroup from 'react-bootstrap/InputGroup'
 const Search = ({ searcher, filterCheck,filterCategory }) => {
     return (
         <>
-            <InputGroup>
+            <InputGroup className="searchbar">
                 <Form  inline onChange={searcher}>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 </Form>
-                <select  onClick={filterCategory} name="select">
+                <select  className="category" onClick={filterCategory} name="select">
                     <option selected value="all">Todos los productos</option>
                     <option value="alimentación">Alimentación</option>
                     <option value="belleza">Belleza</option>
@@ -21,7 +21,7 @@ const Search = ({ searcher, filterCheck,filterCategory }) => {
             </InputGroup>   
             <Form>
                 
-                <p>En stock <input onChange={filterCheck} type="checkbox" label="Check me out" /></p>
+                <p style={{ fontSize: '0.8rem', marginLeft: '5px' }}>En stock <input onChange={filterCheck} type="checkbox" label="Check me out" /></p>
             </Form>
 
         </>

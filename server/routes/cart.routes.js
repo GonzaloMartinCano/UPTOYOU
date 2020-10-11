@@ -69,6 +69,24 @@ router.put('/editCart/:userId/:index', (req, res, next) => {
 
 })
 
+router.post('/deletecart/:userId/:index', (req, res, next) => { 
+
+    let newCart = []
+    Cart.findOne({ userID: req.params.userId })
+        .then(cart => {
+            newCart = cart.products
+            console.log(newCart.length)
+            newCart.splice(req.params.index, 1)
+            console.log(newCart.length)
+            Cart.findOneAndUpdate({ userID: req.params.userId }, { products: newCart })
+            .then((response) => res.json(response))
+            .catch(err => console.log(err))
+
+        })
+        .catch(err => console.log(err))
+
+})
+
 
 
 

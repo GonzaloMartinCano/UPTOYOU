@@ -64,7 +64,6 @@ class ProductsList extends Component {
 
             <Container>
                 <main>
-                    <h1>Listado de productos</h1>
                     <Search searcher={valor => this.searcher(valor)} filterCheck={ valor => this.filterCheck(valor)} filterCategory={this.filterCategory}/>
                     <Row>
                         {

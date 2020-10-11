@@ -11,5 +11,6 @@ export default class CartService {
 
     getMyCart = id => this.api.get(`/getMycart/${id}`)
     addToCart = (productID, userID, stock, quantity) => this.api.post(`/addToCart/${productID}/${userID}`, {stock, quantity},)
-    editCart = (userID, quantity, index)  => this.api.put(`/editCart/${userID}/${index}`, {quantity},)
+    editCart = (userID, quantity, index) => this.api.put(`/editCart/${userID}/${index}`, { quantity },)
+    deleteProductCart = (userID, index)  => this.api.post(`/deletecart/${userID}/${index}`)
 }

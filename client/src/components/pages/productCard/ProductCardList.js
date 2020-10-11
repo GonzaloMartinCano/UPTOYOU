@@ -1,20 +1,34 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import miproducto from './miproducto.png'
+import carrito from './carrito.png'
 
 import Card from 'react-bootstrap/Card'
+import {MdAddShoppingCart} from 'react-icons/md';
+
+
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
-const ProductCard = ({ _id, name, image, loggedInUser, userID, stock, index}) => {
+const ProductCard = ({ _id, name, image, loggedInUser, userID, stock, index, price}) => {
 
     return (
 
         <Card className="product-card">
-            <Card.Img variant="top" src={image} />
-            <Card.Body>
-                <h4>{name}</h4>
-                <h4>En stock: {stock}</h4>
+            <Link to={`/products/details/${_id}`} >
+            <img src={image}/>
+                
+             </Link>
+            <Card.Body className="cardlistbody">
+        
+                <div >
+                    <h4>{name}</h4>
+                    <p>{price}  €</p>
+                    <p>Stock: {stock}</p>
+                </div>
+
+                <div>
+                        
                 
                 {loggedInUser && loggedInUser._id === userID
                     ?
@@ -23,10 +37,14 @@ const ProductCard = ({ _id, name, image, loggedInUser, userID, stock, index}) =>
                         <Link to={`/profile/${loggedInUser._id}`} className="btn btn-dark btn-sm"><img style={{marginLeft: '10px', height: '100%' }} className="chekmiproducto" src={miproducto}/>Ver en mi perfil</Link>
                     </ButtonGroup>
                     :
-                    <ButtonGroup style={{ width: '100%' }}>
-                        <Link to={`/products/details/${_id}`} className="btn btn-dark btn-sm">Detalles</Link>
+                    <ButtonGroup >
+                        <Link to={`/products/details/${_id}`} className="btn btn-success btn-sm addcartbutton"><MdAddShoppingCart/></Link>
                     </ButtonGroup>
-                }
+                    }
+                    
+                </div>
+
+            
             </Card.Body>
         </Card>
 

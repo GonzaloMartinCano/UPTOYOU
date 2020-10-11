@@ -7,6 +7,10 @@ import Nav from 'react-bootstrap/Nav'
 import './Navbar.css' 
 
 import logo from './logo.png'
+import { FiShoppingCart } from 'react-icons/fi';
+import { CgProfile } from 'react-icons/cg';
+
+
 
 import authService from './../../../service/auth.service'
 import cartService from '../../../service/cart.service'
@@ -16,7 +20,9 @@ export default class extends Component {
 
     constructor(props) {
         super()
-        this.state = []
+        this.state = {
+            products: []
+        }
         this.authService = new authService()
         this.cartService = new cartService()
     }
@@ -28,20 +34,9 @@ export default class extends Component {
             .catch(err => console.log('ERRORR!!:', err))
     }
 
-    componentDidMount = () => this.loadCart()
-
-    loadCart = () => {
-        console.log("VEEEENGOOO")
-        if (this.props.loggedInUser) {
-            this.cartService
-                .getMyCart(this.props.loggedInUser._id)
-                .then(response => console.log("aaaaaaaaaaaaaaaaaaa", response))
-                .catch(err => console.log('Error:', err))
-        }
-            
-    }
 
     render() {
+  
         return (
             <Navbar expand="lg" className="bg-custom-2" style={{paddingBottom: "10px", marginBottom: "20px"}}>
                 <Link to="/">
@@ -61,12 +56,12 @@ export default class extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ml-auto"  >
                         <Link className="nav-link" to="/">Inicio</Link>
-                        {this.props.loggedInUser && <Link className="nav-link" to="/cart">Cart {this.state}</Link>}
                         <Link className="nav-link" to="/products">Productos</Link>
                         {!this.props.loggedInUser && <Link className="nav-link" to="/signup">Registro</Link>}
                         {!this.props.loggedInUser && <Link className="nav-link" to="/login">Acceder</Link>}
-                        {this.props.loggedInUser && <div className="nav-link" onClick={this.logoutUser}>Cerrar sesión</div>}
-                        <Link className="nav-link" to="/profile">- Hola, {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</Link>
+                        <Link className="nav-link" to="/profile"><CgProfile/> Hola {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</Link>
+                        {this.props.loggedInUser && <Link className="nav-link" to="/cart"><FiShoppingCart/>  {this.props.products.length}</Link>}
+                        {this.props.loggedInUser && <div className="nav-link" onClick={this.logoutUser}>Cerrar sesión</div>}    
                 
                     </Nav>
                 </Navbar.Collapse>
