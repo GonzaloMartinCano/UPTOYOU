@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
-import ListGroup from 'react-bootstrap/ListGroup'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
@@ -48,6 +46,10 @@ import cartService from '../../../service/cart.service'
          
      }
 
+     deleteProduct = () => {
+         this.props.deleteProductCart(this.props.index)
+         this.props.calculateTotal(-(Number(this.props.refID.price) * Number(this.state[this.props.index].quantity)))
+     }
 
 
 
@@ -68,7 +70,7 @@ import cartService from '../../../service/cart.service'
                 <Spinner />}</td>
                 <td>{this.props.refID.price} €</td>
                 <td>{this.state[this.props.index] ? <p>{this.props.refID.price * this.state[this.props.index].quantity}€ </p> : <Spinner />}</td>
-                <td ><Button style={{fontWeight: "800"}} onClick={this.props.deleteProductCart} className="btn btn-danger btn-sm"><MdDeleteForever/></Button></td>
+                <td ><Button style={{fontWeight: "800"}} onClick={this.deleteProduct} className="btn btn-danger btn-sm"><MdDeleteForever/></Button></td>
           </tr>
     
          )

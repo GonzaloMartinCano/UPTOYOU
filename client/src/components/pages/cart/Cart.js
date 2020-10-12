@@ -11,7 +11,7 @@ import Table from 'react-bootstrap/Table'
 
 
 import ProductCardCart from './../productCard/ProductCardCart'
-import Spinner from '../../shared/spinner/Spinner'
+
 
 
 class Cart extends Component {
@@ -29,6 +29,7 @@ class Cart extends Component {
         this.loadProducts()
         
     }
+    
     loadProducts = () => {
         this.cartService
             .getMyCart(this.props.loggedInUser._id)
@@ -37,17 +38,19 @@ class Cart extends Component {
     }
 
     calculateTotal = (price) => {
-        let newTotal = price + this.state.totalPrice
+        let newTotal = Number(price) + Number(this.state.totalPrice)
         this.setState({totalPrice: newTotal})
     }
 
     deleteProductCart = (index) => {
-        console.log("Pasa por aquiiii")
         this.cartService
             .deleteProductCart(this.props.loggedInUser._id, index)
-            .then(() =>  this.loadProducts())
+            .then(() => {
+                this.loadProducts()
+                this.props.loadCart()
+            })
             .catch(err => console.log('Error:', err))
-     }
+    }
 
     render() {
         return (

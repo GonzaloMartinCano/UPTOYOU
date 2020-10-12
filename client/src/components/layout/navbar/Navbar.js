@@ -9,6 +9,7 @@ import './Navbar.css'
 import logo from './logo.png'
 import { FiShoppingCart } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
+import Spinner from '../../shared/spinner/Spinner'
 
 
 
@@ -60,7 +61,7 @@ export default class extends Component {
                         {!this.props.loggedInUser && <Link className="nav-link" to="/signup">Registro</Link>}
                         {!this.props.loggedInUser && <Link className="nav-link" to="/login">Acceder</Link>}
                         <Link className="nav-link" to="/profile"><CgProfile/> Hola {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</Link>
-                        {this.props.loggedInUser && <Link className="nav-link" to="/cart"><FiShoppingCart/>  {this.props.products.length}</Link>}
+                        {this.props.loggedInUser && <Link className="nav-link" to="/cart"><FiShoppingCart />  { this.props.quantityInCart}</Link>}
                         {this.props.loggedInUser && <div className="nav-link" onClick={this.logoutUser}>Cerrar sesión</div>}    
                 
                     </Nav>

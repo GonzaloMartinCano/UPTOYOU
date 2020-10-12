@@ -25,7 +25,8 @@ class App extends Component {
     super()
     this.state = {
       loggedInUser: undefined,
-      products: []
+      products: [],
+      quantityInCart: 0
     }
     this.authService = new authService()
     this.cartService = new CartService()
@@ -37,7 +38,10 @@ class App extends Component {
 
   }
 
-  setTheUser = user => this.setState({ loggedInUser: user })
+  setTheUser = user => {
+    this.setState({ loggedInUser: user })
+    this.loadCart()
+  }
 
   fetchUser = () => {
     this.authService
@@ -46,28 +50,27 @@ class App extends Component {
       .catch(err => this.setState({ loggedInUser: null }))
   }
 
-  // loadCart = () => {
+  loadCart = () => {
     
-    //   if (this.props.loggedInUser) {
-      //     console.log("entro por aquiiiiiiiiiiiii")
-      //       this.cartService
-      //           .getMyCart(this.props.loggedInUser._id)
-      //           .then(response => this.setState({ products: response.data.products }))
-      //           .catch(err => console.log('Error:', err))
-      //   }
-   // }
-        
+    if (this.state.loggedInUser) {
+        this.cartService
+            .getMyCart(this.state.loggedInUser._id)
+            .then(response => this.setState({ quantityInCart: response.data.products.length }))
+            .catch(err => console.log('Error:', err))
+        }
+   }
+
 
   render() {
 
     return (
       <>
-        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} products={this.state.products} />
+        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} quantityInCart={this.state.quantityInCart} loadcart={this.loadCart} />
         <Switch>
           <Route path="/" exact render={() => <Index />} />
 
           <Route path="/products" exact render={() => <ProductsList loggedInUser={this.state.loggedInUser} />} />
-          <Route path="/products/details/:product_id" render={props => <ProductDetails {...props} loggedInUser={this.state.loggedInUser}/>} />
+          <Route path="/products/details/:product_id" render={props => <ProductDetails {...props} loadcart={this.loadCart} loggedInUser={this.state.loggedInUser}/>} />
           <Route path="/products/edit/:product_id" render={(props) => this.state.loggedInUser ? <ProductEdit {...props} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
           <Route path="/products/delete/:product_id" render={(props) => this.state.loggedInUser ? <ProductDelete {...props} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
 
@@ -75,7 +78,7 @@ class App extends Component {
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
           <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to="/login" />} />
-          <Route path="/cart" render={(props) => this.state.loggedInUser ? <Cart loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to="/login" />} />
+          <Route path="/cart" render={(props) => this.state.loggedInUser ? <Cart loggedInUser={this.state.loggedInUser} loadCart={this.loadCart} {...props} /> : <Redirect to="/login" />} />
 
         </Switch>
         <Footer />

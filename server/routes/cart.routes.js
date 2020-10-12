@@ -75,9 +75,7 @@ router.post('/deletecart/:userId/:index', (req, res, next) => {
     Cart.findOne({ userID: req.params.userId })
         .then(cart => {
             newCart = cart.products
-            console.log(newCart.length)
             newCart.splice(req.params.index, 1)
-            console.log(newCart.length)
             Cart.findOneAndUpdate({ userID: req.params.userId }, { products: newCart })
             .then((response) => res.json(response))
             .catch(err => console.log(err))
@@ -86,9 +84,5 @@ router.post('/deletecart/:userId/:index', (req, res, next) => {
         .catch(err => console.log(err))
 
 })
-
-
-
-
 
 module.exports = router

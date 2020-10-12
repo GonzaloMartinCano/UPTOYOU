@@ -40,9 +40,12 @@ class ProductDetails extends Component {
         if (this.state.product.stock >= this.state.quantity) {
             this.cartService
             .addToCart(this.state.product._id, this.props.loggedInUser._id, this.state.product.stock, quantity)
-            .then(() => this.componentDidMount)
-            .then(() => alert("hecho"))
-            .catch(err => console.log('Error:', err))
+                .then(() => {
+                    this.componentDidMount()
+                    this.props.loadcart()
+                    alert("hecho")
+                })
+                .catch(err => console.log('Error:', err))
         }
         else {
             alert("no hay stock")
