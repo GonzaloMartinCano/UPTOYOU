@@ -4,7 +4,10 @@ import miproducto from './miproducto.png'
 import carrito from './carrito.png'
 
 import Card from 'react-bootstrap/Card'
-import {MdAddShoppingCart} from 'react-icons/md';
+import { MdAddShoppingCart } from 'react-icons/md'
+import { CgProfile } from 'react-icons/cg'
+
+
 
 
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
@@ -33,8 +36,7 @@ const ProductCard = ({ _id, name, image, loggedInUser, userID, stock, index, pri
                 {loggedInUser && loggedInUser._id === userID
                     ?
                     <ButtonGroup style={{ width: '100%' }}>
-                        <Link to={`/products/details/${_id}`} className="btn btn-dark btn-sm">Detalles</Link>
-                        <Link to={`/profile/${loggedInUser._id}`} className="btn btn-dark btn-sm"><img style={{marginLeft: '10px', height: '100%' }} className="chekmiproducto" src={miproducto}/>Ver en mi perfil</Link>
+                        <Link to={`/profile/${loggedInUser._id}`} className="btn btn-success btn-sm addcartbutton"><CgProfile/></Link>
                     </ButtonGroup>
                     :
                     <ButtonGroup >

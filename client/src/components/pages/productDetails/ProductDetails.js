@@ -6,7 +6,10 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import miproducto from './../productCard/miproducto.png'
+import { MdAddShoppingCart } from 'react-icons/md'
+import Rating from '@material-ui/lab/Rating'
+
+
 
 
 import cartService from '../../../service/cart.service'
@@ -83,13 +86,16 @@ class ProductDetails extends Component {
                             <img style={{ width: '75%' }} alt={this.state.product.name} src={this.state.product.image} />
                         </Col>
                     </Row>
-                    <Row>
-                        <Col md={3}>
+                    <Row >
+                        <Col  className="cartbuttons">
                             <Link to="/products" className="btn btn-dark btn-sm">Volver al índice</Link>
+                        
+                            <Button style={{marginRight: '100px'}} onClick={() => this.addToCart(this.state.quantity)} className="btn btn-success btn-sm">Añadir <MdAddShoppingCart/></Button>
                         </Col>
-                        <Col md={3}>
-                            <Button onClick={() => this.addToCart(this.state.quantity)} className="btn btn-dark btn-sm"><img style={{marginLeft: '10px', height: '100%' }} className="chekmiproducto" src={miproducto}/>Add to Cart</Button>
+                        <Col>
                         </Col>
+            
+                    <Rating name="size-small" defaultValue={2} size="small"/>
                     </Row>
                 </main>
             </Container>

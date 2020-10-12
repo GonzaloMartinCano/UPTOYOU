@@ -62,7 +62,7 @@ class ProductsList extends Component {
     render() {
         return (
 
-            <Container>
+            <Container style={{marginBottom: "20px"}}>
                 <main>
                     <Search searcher={valor => this.searcher(valor)} filterCheck={ valor => this.filterCheck(valor)} filterCategory={this.filterCategory}/>
                     <Row>

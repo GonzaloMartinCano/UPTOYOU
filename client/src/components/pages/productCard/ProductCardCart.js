@@ -7,6 +7,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 import Spinner from '../../shared/spinner/Spinner'
+import {MdDeleteForever} from 'react-icons/md';
+
 
 import cartService from '../../../service/cart.service'
 
@@ -60,13 +62,13 @@ import cartService from '../../../service/cart.service'
             <td>{this.state[this.props.index]
                     ?
                 <Form.Group>
-                    <Form.Control  name="quantity" type="number" min="1" max={this.props.refID.stock} placeholder="1" value={this.state[this.props.index].quantity} onChange={this.handleInputChange}  />
+                    <Form.Control style={{textAlign: 'center'}} name="quantity" type="number" min="1" max={this.props.refID.stock} placeholder="1" value={this.state[this.props.index].quantity} onChange={this.handleInputChange}  />
                 </Form.Group>
                     :
                 <Spinner />}</td>
                 <td>{this.props.refID.price} €</td>
                 <td>{this.state[this.props.index] ? <p>{this.props.refID.price * this.state[this.props.index].quantity}€ </p> : <Spinner />}</td>
-                <td ><Button style={{fontWeight: "800"}} onClick={this.props.deleteProductCart} className="btn btn-danger btn-sm">x</Button></td>
+                <td ><Button style={{fontWeight: "800"}} onClick={this.props.deleteProductCart} className="btn btn-danger btn-sm"><MdDeleteForever/></Button></td>
           </tr>
     
          )

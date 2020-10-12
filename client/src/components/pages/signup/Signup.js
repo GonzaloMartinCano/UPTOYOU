@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -56,7 +57,7 @@ class Signup extends Component {
                                     <Form.Label>Contraseña</Form.Label>
                                     <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                                 </Form.Group>
-
+                                <p>Ya tienes una cuenta? <Link to={`/login`} >Accede aqui.</Link></p><br/>
                                 <Button variant="dark" type="submit">Registrarme</Button>
                             </Form>
                         </Col>

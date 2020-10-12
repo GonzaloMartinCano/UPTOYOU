@@ -47,7 +47,7 @@ class Profile extends Component {
                     <h2>¡Bienvenid@ a tu perfil, {this.props.loggedInUser.username}!</h2><br></br>
 
                     {this.props.loggedInUser.isAdmin && <div>
-                        <h5> Este es tu perfil de administrador, aqui podrás editar todos los productos de tu tienda </h5><br></br>
+                        <p> Este es tu perfil de administrador, aqui podrás añadir, editar o eliminar todos los productos de tu tienda </p><br></br>
                         <Button onClick={() => this.handleModal(true)} style={{ marginBottom: '20px' }} variant="dark" size="sm">Añadir producto</Button>
                     
 

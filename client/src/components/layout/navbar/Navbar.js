@@ -54,7 +54,7 @@ export default class extends Component {
                 <Link to="/"><Navbar.Brand style={{ fontWeight: '900', color: "#2D3A3A"}}>UP2YOU</Navbar.Brand></Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="ml-auto"  >
+                    <Nav className="ml-auto" style={{ fontWeight: '600', color: "#2D3A3A"}} >
                         <Link className="nav-link" to="/">Inicio</Link>
                         <Link className="nav-link" to="/products">Productos</Link>
                         {!this.props.loggedInUser && <Link className="nav-link" to="/signup">Registro</Link>}
