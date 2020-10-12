@@ -7,10 +7,6 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { MdAddShoppingCart } from 'react-icons/md'
-import Rating from '@material-ui/lab/Rating'
-
-
-
 
 import cartService from '../../../service/cart.service'
 import productsService from '../../../service/products.service'
@@ -94,8 +90,7 @@ class ProductDetails extends Component {
                         </Col>
                         <Col>
                         </Col>
-            
-                    <Rating name="size-small" defaultValue={2} size="small"/>
+ 
                     </Row>
                 </main>
             </Container>
