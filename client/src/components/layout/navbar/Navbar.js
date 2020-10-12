@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import './Navbar.css' 
@@ -9,9 +8,6 @@ import './Navbar.css'
 import logo from './logo.png'
 import { FiShoppingCart } from 'react-icons/fi';
 import { CgProfile } from 'react-icons/cg';
-import Spinner from '../../shared/spinner/Spinner'
-
-
 
 import authService from './../../../service/auth.service'
 import cartService from '../../../service/cart.service'

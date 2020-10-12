@@ -12,7 +12,7 @@ const Search = ({ searcher, filterCheck,filterCategory }) => {
                     <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 </Form>
                 <select  className="category" onClick={filterCategory} name="select">
-                    <option selected value="all">Todos los productos</option>
+                    <option value="all">Todos los productos</option>
                     <option value="alimentación">Alimentación</option>
                     <option value="belleza">Belleza</option>
                     <option value="tecnología">Tecnología</option> 

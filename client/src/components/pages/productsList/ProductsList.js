@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Button from 'react-bootstrap/Button'
 
 import Search from '../searchBar/Searchbar'
 
@@ -18,8 +19,11 @@ class ProductsList extends Component {
     constructor() {
         super()
         this.state = {
+            allProducts: [],
             products: [],
-            allProducts: []
+            productsToSee: [],
+            pages: 0,
+            pageIndex: 0
         }
         this.productsService = new productsService()
     }
@@ -29,25 +33,50 @@ class ProductsList extends Component {
     loadProducts = () => {
         this.productsService
             .getAllProducts()
-            .then(response => this.setState({ allProducts: response.data }))
-            .then(() => this.setState({ products: this.state.allProducts }))
+            .then(response => {
+                this.setState({ allProducts: response.data })
+                this.setState({ products: this.state.allProducts })
+                this.setState({ productsToSee: this.state.products })
+                this.pagination()
+            })
             .catch(err => console.log('Error:', err))
+    }
+
+    pagination = () => {
+        console.log("entro en paginacion ", this.state.pageIndex)
+        let newProducts = this.state.products
+        let pages = []
+        if (this.state.products.length > 6) {
+            for (let i = 0; i < this.state.products.length / 6; i++){
+                pages.push(1)
+            }
+            this.setState({ pages })
+        }
+        let count = 6;
+        let final = count * this.state.pageIndex + 6
+        newProducts = newProducts.slice(count * this.state.pageIndex, final)
+        this.setState({ productsToSee: newProducts })
     }
 
     searcher = valor => {
         let { value } = valor.target
+        
+        console.log(value)
         if (value)
             this.setState(({ products: this.state.allProducts.filter((elm) => elm.name.toLowerCase().includes(value.toLowerCase())) }))
         else
             this.setState({ products: this.state.allProducts })
+        this.pagination()
+       
     }
 
     filterCheck = e => {
 
         if(e.target.checked === true)
-            this.setState({ products: this.state.allProducts.filter((elm) => elm.stock > 0) })
+            this.setState({ products: this.state.products.filter((elm) => elm.stock > 0) })
         else
             this.setState({ products: this.state.allProducts })
+            this.pagination()
     }
 
     filterCategory = e => {
@@ -56,7 +85,23 @@ class ProductsList extends Component {
             this.setState({ products: this.state.allProducts.filter((elm) => elm.category === e.target.value) })
         else 
             this.setState({ products: this.state.allProducts }) 
-        
+        this.pagination()
+    }
+
+    setPage = (e) => {
+        console.log(e.target.value)
+        let newIndex = 0
+        if (e.target.value === 'pre' &&  this.state.pageIndex > 0) {
+            newIndex = this.state.pageIndex - 1          
+        }
+        else if (e.target.value === 'next' &&  this.state.pageIndex < this.state.pages.length -1) {
+            newIndex = this.state.pageIndex + 1            
+        }
+        else if (e.target.value !== 'next' && e.target.value !== 'pre'){
+            newIndex = e.target.value
+        }
+        this.setState({pageIndex: newIndex})
+        this.pagination()
     }
 
     render() {
@@ -67,14 +112,29 @@ class ProductsList extends Component {
                     <Search searcher={valor => this.searcher(valor)} filterCheck={ valor => this.filterCheck(valor)} filterCategory={this.filterCategory}/>
                     <Row>
                         {
-                        this.state.products.length
+                        this.state.productsToSee.length
                             ?
-                        this.state.products.map((elm, index) => <Col md={4} key={index}><ProductCardList  loggedInUser={this.props.loggedInUser} {...elm} /></Col>)
+                                this.state.productsToSee.map((elm, index) =>
+                                    <Col md={4} key={index}><ProductCardList loggedInUser={this.props.loggedInUser} {...elm} /></Col>)
                         :
-                        <p>No se han encontrado resultados con esos criterios de busqueda <Spinner key='spinner' /></p>
+                        <div>No se han encontrado resultados con esos criterios de busqueda <Spinner key='spinner' /></div>
                         }
                     </Row>
                 </main>
+                <nav aria-label="Page navigation" className="pagination">
+                    <ul className="pagination" >
+                        <li className="page-item"><Button className="page-link" onClick={this.setPage} value={"pre"}>{"<<"}</Button></li>
+                        {
+                            this.state.pages.length
+                            ?
+                            this.state.pages.map((elm, index) =>
+                                <li key={index} className="page-item"><Button className="page-link" onClick={this.setPage} value={index}>{index}</Button></li>)
+                            :
+                            <Spinner key='spinner' />
+                        }
+                        <li className="page-item"><Button className="page-link" onClick={this.setPage} value={"next"}>{">>"}</Button></li>
+                    </ul>
+                </nav>
             </Container>
 
         )

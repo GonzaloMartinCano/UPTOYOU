@@ -22,7 +22,7 @@ h1 {
     margin-bottom: 20px;
     border-style: none;
     border-radius: 0px 30px 0px 0px;
-    box-shadow: 0px 0px 15px 0px #c4f5cd ;
+    box-shadow: 0px 0px 15px 0px #3d6844 ;
    
 }
 
@@ -87,4 +87,8 @@ h1 {
 
   thead {
     text-align: center;
+  }
+
+  .pagination {
+    justify-content: center;
   }

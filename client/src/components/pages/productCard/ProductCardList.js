@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import miproducto from './miproducto.png'
-import carrito from './carrito.png'
+
 
 import Card from 'react-bootstrap/Card'
 import { MdAddShoppingCart } from 'react-icons/md'
@@ -19,7 +18,7 @@ const ProductCard = ({ _id, name, image, loggedInUser, userID, stock, index, pri
 
         <Card className="product-card">
             <Link to={`/products/details/${_id}`} >
-            <img src={image}/>
+                <img src={image} alt={name}/>
                 
              </Link>
             <Card.Body className="cardlistbody">

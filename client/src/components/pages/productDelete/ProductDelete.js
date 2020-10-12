@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
 
 import productsService from '../../../service/products.service'
-import Container from 'react-bootstrap/esm/Container'
 import Card from 'react-bootstrap/Card'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Row from 'react-bootstrap/Row'
