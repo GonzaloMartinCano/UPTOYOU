@@ -17,6 +17,8 @@ import Cart from './pages/cart/Cart'
 import authService from './../service/auth.service'
 import CartService from './../service/cart.service'
 
+import Alert from './shared/alert/Alert'
+
 import './App.css'
 
 class App extends Component {
@@ -26,7 +28,9 @@ class App extends Component {
     this.state = {
       loggedInUser: undefined,
       products: [],
-      quantityInCart: 0
+      quantityInCart: 0,
+      alert: null,
+      alertText: null
     }
     this.authService = new authService()
     this.cartService = new CartService()
@@ -35,7 +39,6 @@ class App extends Component {
 
   componentDidMount = () => {
     this.fetchUser()
-
   }
 
   setTheUser = user => {
@@ -60,18 +63,23 @@ class App extends Component {
         }
    }
 
+  setAlert = (status, text) => this.setState({ alert: status, alertText: text })
 
+  resetAlert = () => this.setState({ alert: null, alertText: null })
+  
   render() {
 
     return (
       <>
         <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} quantityInCart={this.state.quantityInCart} loadcart={this.loadCart} />
+        {this.state.alert === 'ok' && <Alert text={this.state.alertText} status='ok' resetAlert={this.resetAlert}/>}
+        {this.state.alert === 'fail' && <Alert text={this.state.alertText} status='fail' resetAlert={this.resetAlert} />}
         <Switch>
           <Route path="/" exact render={() => <Index />} />
 
           <Route path="/products" exact render={() => <ProductsList loggedInUser={this.state.loggedInUser} />} />
-          <Route path="/products/details/:product_id" render={props => <ProductDetails {...props} loadcart={this.loadCart} loggedInUser={this.state.loggedInUser}/>} />
-          <Route path="/products/edit/:product_id" render={(props) => this.state.loggedInUser ? <ProductEdit {...props} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
+          <Route path="/products/details/:product_id" render={props => <ProductDetails {...props} loadcart={this.loadCart} setAlert={this.setAlert} loggedInUser={this.state.loggedInUser}/>} />
+          <Route path="/products/edit/:product_id" render={(props) => this.state.loggedInUser ? <ProductEdit {...props} setAlert={this.setAlert} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
           <Route path="/products/delete/:product_id" render={(props) => this.state.loggedInUser ? <ProductDelete {...props} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
 
           

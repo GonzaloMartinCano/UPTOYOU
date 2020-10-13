@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Alert from './../../shared/alert/Alert'
 
 
 import productsService from '../../../service/products.service'
@@ -16,10 +17,14 @@ class EditProduct extends Component {
     }
 
     componentDidMount = () => {
+       this.getProduct()
+    }
+
+    getProduct = () => {
         this.productsService
-            .getOneProduct(this.props.match.params.product_id)
-            .then(response => this.setState(response.data))
-            .catch(err => console.log('Error:', err))
+        .getOneProduct(this.props.match.params.product_id)
+        .then(response => this.setState(response.data))
+        .catch(err => console.log('Error:', err))
     }
 
     handleInputChange = e => {
@@ -29,11 +34,12 @@ class EditProduct extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-
         this.productsService
-            .updateProduct(this.state._id, this.state)
-            .then(() => this.componentDidMount)
-            .then(() => alert("menuda makina, tengo que ponerte un alert para confirmar el cambio"))
+            .updateProduct(this.state._id, this.product)
+            .then(() => {
+                this.props.setAlert('ok', 'Producto editado correctamente')
+                this.getProduct()
+            })
             .catch(err => console.log('Erroro!!', { err }))
     }
 
@@ -43,28 +49,28 @@ class EditProduct extends Component {
 
             <Container>
 
-            <Form onSubmit={this.handleFormSubmit}>
-                <Form.Group>
-                    <Form.Label>Nombre</Form.Label>
-                    <Form.Control type="text" name="name" value={this.state.name} placeholder={this.state.name}  onChange={this.handleInputChange} />
-                </Form.Group>
+                <Form onSubmit={this.handleFormSubmit}>
+                    <Form.Group>
+                        <Form.Label>Nombre</Form.Label>
+                        <Form.Control type="text" name="name" value={this.state.name} placeholder={this.state.name}  onChange={this.handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Descripción</Form.Label>
-                    <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
-                </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Descripción</Form.Label>
+                        <Form.Control type="text" name="description" value={this.state.description} onChange={this.handleInputChange} />
+                    </Form.Group>
 
-                <Form.Group>
-                    <Form.Label>Precio</Form.Label>
-                    <Form.Control type="text" name="price" value={this.state.price} onChange={this.handleInputChange} />
-                </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Precio</Form.Label>
+                        <Form.Control type="text" name="price" value={this.state.price} onChange={this.handleInputChange} />
+                    </Form.Group>
 
 
-                <Form.Group>
-                    <Form.Label>Imagen (URL)</Form.Label>
-                        <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
-                            <img style={{ marginTop: '20px', width: '50%' }} alt={this.state.name} src={this.state.image} />
-                </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Imagen (URL)</Form.Label>
+                            <Form.Control type="text" name="image" value={this.state.image} onChange={this.handleInputChange} />
+                                <img style={{ marginTop: '20px', width: '50%' }} alt={this.state.name} src={this.state.image} />
+                    </Form.Group>
 
                     <Link to="/profile">
                         <Button size="sm" variant="dark" style={{ marginRight: '20px' }}>Volver a Inicio</Button>

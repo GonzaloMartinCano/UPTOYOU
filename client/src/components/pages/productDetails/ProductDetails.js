@@ -7,6 +7,8 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { MdAddShoppingCart } from 'react-icons/md'
+import Alert from './../../shared/alert/Alert'
+
 
 import cartService from '../../../service/cart.service'
 import productsService from '../../../service/products.service'
@@ -20,37 +22,43 @@ class ProductDetails extends Component {
                 description: '',
                 price: '',
                 rating: '',
-                stock: ''
+                stock: '',
             },
-            quantity: 1
+            quantity: 1,
         }
         this.cartService = new cartService()
         this.productsService = new productsService()
     }
 
     componentDidMount = () => {
+        this.getOneProduct()
+    }
+
+    getOneProduct = () => {
         this.productsService
-            .getOneProduct(this.props.match.params.product_id)
-            .then(response => this.setState({ product: response.data }))
-            .catch(err => console.log('Error:', err))
+        .getOneProduct(this.props.match.params.product_id)
+        .then(response => this.setState({ product: response.data }))
+        .catch(err => console.log('Error:', err))
     }
 
     addToCart = (quantity) => {
-
+        
         if (this.state.product.stock >= this.state.quantity) {
             this.cartService
             .addToCart(this.state.product._id, this.props.loggedInUser._id, this.state.product.stock, quantity)
                 .then(() => {
-                    this.componentDidMount()
+                    this.props.setAlert('ok', 'Producto añadido a tu cesta!')
+                    this.getOneProduct()
                     this.props.loadcart()
-                    alert("hecho")
                 })
                 .catch(err => console.log('Error:', err))
         }
         else {
-            alert("no hay stock")
+            this.props.setAlert('fail', 'Lo sentimos pero no hay stock')
         }
+      
     }
+
 
     handleInputChange = e => {
         this.setState( {quantity: e.target.value})
@@ -61,6 +69,7 @@ class ProductDetails extends Component {
         return (
             <Container>
                 <main>
+                   
                     <h1>{this.state.product.name}</h1>
                     <hr />
                     <Row>
@@ -89,11 +98,10 @@ class ProductDetails extends Component {
                         <Col  className="cartbuttons">
                             <Link to="/products" className="btn btn-dark btn-sm">Volver al índice</Link>
                         
-                            <Button style={{marginRight: '100px'}} onClick={() => this.addToCart(this.state.quantity)} className="btn btn-success btn-sm">Añadir <MdAddShoppingCart/></Button>
+                            <Button style={{marginRight: '100px'}}  disabled={this.state.uploadingImage} onClick={() => this.addToCart(this.state.quantity)} className="btn btn-success btn-sm">Añadir <MdAddShoppingCart/></Button>
                         </Col>
                         <Col>
                         </Col>
- 
                     </Row>
                 </main>
             </Container>
