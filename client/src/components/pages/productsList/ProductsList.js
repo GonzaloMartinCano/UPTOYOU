@@ -36,14 +36,13 @@ class ProductsList extends Component {
             .then(response => {
                 this.setState({ allProducts: response.data })
                 this.setState({ products: this.state.allProducts })
-                this.setState({ productsToSee: this.state.products })
                 this.pagination()
             })
             .catch(err => console.log('Error:', err))
     }
 
     pagination = () => {
-        console.log("entro en paginacion ", this.state.pageIndex)
+      
         let newProducts = this.state.products
         let pages = []
         if (this.state.products.length > 6) {
@@ -51,45 +50,48 @@ class ProductsList extends Component {
                 pages.push(1)
             }
             this.setState({ pages })
+            let count = 6;
+            let final = count * this.state.pageIndex + 6
+            newProducts = newProducts.slice(count * this.state.pageIndex, final)
         }
-        let count = 6;
-        let final = count * this.state.pageIndex + 6
-        newProducts = newProducts.slice(count * this.state.pageIndex, final)
         this.setState({ productsToSee: newProducts })
     }
 
     searcher = valor => {
         let { value } = valor.target
-        
-        console.log(value)
-        if (value)
-            this.setState(({ products: this.state.allProducts.filter((elm) => elm.name.toLowerCase().includes(value.toLowerCase())) }))
+
+        if (value) 
+            this.setState(({
+                products: this.state.allProducts.filter((elm) =>
+                    elm.name.toLowerCase().includes(value.toLowerCase()))
+            }), () => this.pagination())
         else
-            this.setState({ products: this.state.allProducts })
-        this.pagination()
-       
+            this.setState({ products: this.state.allProducts }, () => this.pagination())
+
     }
+
 
     filterCheck = e => {
 
         if(e.target.checked === true)
-            this.setState({ products: this.state.products.filter((elm) => elm.stock > 0) })
+            this.setState({ products: this.state.products.filter((elm) => elm.stock > 0) }, () => this.pagination())
         else
-            this.setState({ products: this.state.allProducts })
-            this.pagination()
+            this.setState({ products: this.state.allProducts }, () => this.pagination())
     }
 
     filterCategory = e => {
 
         if (e.target.value !== 'all')
-            this.setState({ products: this.state.allProducts.filter((elm) => elm.category === e.target.value) })
+            this.setState({
+                products: this.state.allProducts.filter((elm) =>
+                    elm.category === e.target.value)
+            }, () => this.pagination())
         else 
-            this.setState({ products: this.state.allProducts }) 
-        this.pagination()
+            this.setState({ products: this.state.allProducts }, () => this.pagination()) 
     }
 
     setPage = (e) => {
-        console.log(e.target.value)
+
         let newIndex = 0
         if (e.target.value === 'pre' &&  this.state.pageIndex > 0) {
             newIndex = this.state.pageIndex - 1          
@@ -100,8 +102,8 @@ class ProductsList extends Component {
         else if (e.target.value !== 'next' && e.target.value !== 'pre'){
             newIndex = e.target.value
         }
-        this.setState({pageIndex: newIndex})
-        this.pagination()
+        this.setState({pageIndex: newIndex}, () => this.pagination())
+        
     }
 
     render() {
