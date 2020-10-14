@@ -18,12 +18,12 @@ const ProductCard = ({ _id, name, image, stock}) => {
                 <Card.Img variant="top" src={image} />
                 <Card.Body>
                 <h4>{name}</h4>
-                <h4>En stock: {stock}</h4>
+                <p>En stock: {stock}</p>
 
-                    <ButtonGroup style={{ width: '100%' }}>
-                        <Link style={{ marginRight: '20px' }} to={`/products/delete/${_id}`} className="btn btn-danger btn-sm">Eliminar <MdDeleteForever/></Link>
-                        <Link to={`/products/edit/${_id}`} className="btn btn-success btn-sm">Editar <BiEdit/></Link>
-                    </ButtonGroup>
+                    <div style={{ display: 'flex',flexDirection: 'row', justifyContent: 'center',}} >
+                        <Link  to={`/products/delete/${_id}`} className="btn btn-danger btn-sm profilecartbutton"><MdDeleteForever/></Link>
+                        <Link to={`/products/edit/${_id}`} className="btn btn-success btn-sm profilecartbutton"><BiEdit/></Link>
+                    </div>
                 
                 </Card.Body>
             </Card>

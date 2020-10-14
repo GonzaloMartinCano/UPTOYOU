@@ -44,11 +44,11 @@ class Profile extends Component {
                     
                 {/* ZONA ADMIN */}
         
-                    <h2>¡Bienvenid@ a tu perfil, {this.props.loggedInUser.username}!</h2><br></br>
+                    <h5>¡Bienvenid@ a tu perfil, {this.props.loggedInUser.username}!</h5><br></br>
 
                     {this.props.loggedInUser.isAdmin && <div>
                         <p> Este es tu perfil de administrador, aqui podrás añadir, editar o eliminar todos los productos de tu tienda </p><br></br>
-                        <Button onClick={() => this.handleModal(true)} style={{ marginBottom: '20px' }} variant="dark" size="sm">Añadir producto</Button>
+                        <Button onClick={() => this.handleModal(true)} style={{ marginBottom: '20px' }} variant="success" size="sm">Añadir producto</Button>
                     
 
                     <Row>
@@ -70,7 +70,7 @@ class Profile extends Component {
                 {/* COMUN PARA TODOS LOS PERFILES */}
             
                     <Link to="/products">
-                        <Button size="sm" variant="dark" style={{ marginTop: '20px' }}>Volver a Inicio</Button>
+                        <Button size="sm" variant="dark" style={{ marginBottom: '50px' }}>Volver a Inicio</Button>
                     </Link>
                 </Container>
 

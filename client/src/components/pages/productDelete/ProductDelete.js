@@ -46,10 +46,10 @@ class DeleteProduct extends Component {
                     <Card.Body>
                     <h4>{this.state.name}</h4>
                 
-                        <ButtonGroup style={{ width: '100%' }}>
+                        <div style={{ display: 'flex',flexDirection: 'row', justifyContent: 'space-between'}}>
                             <Link to={`/profile`} className="btn btn-dark btn-sm">CANCELAR</Link>
-                            <Button onClick={() => this.deleteProduct()} className="btn btn-dark btn-sm">ELIMINAR PRODUCTO</Button>
-                        </ButtonGroup>
+                            <Button onClick={() => this.deleteProduct()} className="btn btn-success btn-sm">ELIMINAR PRODUCTO</Button>
+                        </div>
                     
                     </Card.Body>
                 </Card>

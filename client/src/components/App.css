@@ -44,7 +44,7 @@ h1 {
     border-radius: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .addcartbutton {
@@ -57,6 +57,14 @@ h1 {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+.profilecartbutton {
+   
+    font-size: 1rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    
 }
 
 .searchbar {
@@ -91,4 +99,9 @@ h1 {
 
   .pagination {
     justify-content: center;
+  }
+
+  .page-link {
+    color:#22ac3b;
+    font-weight: 900;
   }

@@ -41,7 +41,7 @@ class ProductsList extends Component {
             })
             .catch(err => console.log('Error:', err))
     }
-
+ 
     pagination = () => {
       
         let newProducts = this.state.products

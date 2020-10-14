@@ -76,7 +76,7 @@ class EditProduct extends Component {
                         <Button size="sm" variant="dark" style={{ marginRight: '20px' }}>Volver a Inicio</Button>
                     </Link>
                     
-                    <Button size="sm" variant="dark" type="submit">Confirmar cambios</Button>
+                    <Button size="sm" variant="success" type="submit">Confirmar cambios</Button>
                 </Form>
                 
                 </Container>    
