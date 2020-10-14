@@ -32,9 +32,10 @@ class Login extends Component {
             .login(this.state)
             .then(response => {
                 this.props.setTheUser(response.data)
+                this.props.setAlert('ok', ` Hola ${this.state.username}! Encantados de verte de nuevo!`)
                 this.props.history.push('/')
             })
-            .catch(err => console.log('Erroooooor:', { err }))
+            .catch(err => this.props.setAlert('fail', `Ususario o contraseña incorrectos ${err}`))
     }
 
 

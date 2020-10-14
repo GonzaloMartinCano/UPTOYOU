@@ -30,9 +30,10 @@ class NewProduct extends Component {
             .newProduct(this.state)
             .then(() => {
                 this.props.closeModal()
-            })
-            .then(() =>  this.props.refreshList())
-            .catch(err => console.log('Erroro!!', { err }))
+                this.props.setAlert('ok', `Producto añadido a tu tienda! Te deseamos buenas ventas!`)
+                this.props.refreshList()
+            }) 
+            .catch(err => this.props.setAlert('fail', `Ha ocurrido un error. Prueba de nuevo. ${err}`))
     }
 
     render() {

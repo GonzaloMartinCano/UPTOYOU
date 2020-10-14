@@ -27,8 +27,11 @@ export default class extends Component {
     logoutUser = () => {
         this.authService
             .logout()
-            .then(() => this.props.setTheUser(null))
-            .catch(err => console.log('ERRORR!!:', err))
+            .then(() => {
+                this.props.setAlert('ok', ` Sesión cerrada. Hasta pronto!`)
+                this.props.setTheUser(null)
+            })
+            .catch(err => this.props.setAlert('fail', `Ha ocurrido un error ${err}. Intentelo de nuevo más tarde.`))
     }
 
 
@@ -54,7 +57,7 @@ export default class extends Component {
                     <Nav className="ml-auto" style={{ fontWeight: '600', color: "#2D3A3A"}} >
                         <Link className="nav-link" to="/">Inicio</Link>
                         <Link className="nav-link" to="/products">Productos</Link>
-                        {!this.props.loggedInUser && <Link className="nav-link" to="/signup">Registro</Link>}
+                        {/* {!this.props.loggedInUser && <Link className="nav-link" to="/signup">Registro</Link>} */}
                         {!this.props.loggedInUser && <Link className="nav-link" to="/login">Acceder</Link>}
                         <Link className="nav-link" to="/profile"><CgProfile/> Hola {this.props.loggedInUser ? this.props.loggedInUser.username : 'invitado'}</Link>
                         {this.props.loggedInUser && <Link className="nav-link" to="/cart"><FiShoppingCart />  { this.props.quantityInCart}</Link>}

@@ -71,7 +71,7 @@ class App extends Component {
 
     return (
       <>
-        <Navigation setTheUser={this.setTheUser} loggedInUser={this.state.loggedInUser} quantityInCart={this.state.quantityInCart} loadcart={this.loadCart} />
+        <Navigation setTheUser={this.setTheUser} setAlert={this.setAlert} loggedInUser={this.state.loggedInUser} quantityInCart={this.state.quantityInCart} loadcart={this.loadCart} />
         {this.state.alert === 'ok' && <Alert text={this.state.alertText} status='ok' resetAlert={this.resetAlert}/>}
         {this.state.alert === 'fail' && <Alert text={this.state.alertText} status='fail' resetAlert={this.resetAlert} />}
         <Switch>
@@ -80,12 +80,12 @@ class App extends Component {
           <Route path="/products" exact render={() => <ProductsList loggedInUser={this.state.loggedInUser} />} />
           <Route path="/products/details/:product_id" render={props => <ProductDetails {...props} loadcart={this.loadCart} setAlert={this.setAlert} loggedInUser={this.state.loggedInUser}/>} />
           <Route path="/products/edit/:product_id" render={(props) => this.state.loggedInUser ? <ProductEdit {...props} setAlert={this.setAlert} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
-          <Route path="/products/delete/:product_id" render={(props) => this.state.loggedInUser ? <ProductDelete {...props} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
+          <Route path="/products/delete/:product_id" render={(props) => this.state.loggedInUser ? <ProductDelete {...props} setAlert={this.setAlert} loggedInUser={this.state.loggedInUser}/> : <Redirect to="/login" />} />
 
           
-          <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} {...props} />} />
-          <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} />} />
-          <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} {...props} /> : <Redirect to="/login" />} />
+          <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} setAlert={this.setAlert} {...props} />} />
+          <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} setAlert={this.setAlert} />} />
+          <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} setAlert={this.setAlert} {...props} /> : <Redirect to="/login" />} />
           <Route path="/cart" render={(props) => this.state.loggedInUser ? <Cart loggedInUser={this.state.loggedInUser} loadCart={this.loadCart} {...props} /> : <Redirect to="/login" />} />
 
         </Switch>

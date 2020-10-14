@@ -21,15 +21,18 @@ class DeleteProduct extends Component {
         this.productsService
             .getOneProduct(this.props.match.params.product_id)
             .then(response => this.setState(response.data))
-            .catch(err => console.log('Error:', err))
+            .catch(err => this.props.setAlert('fail', `Ha ocurrido un error. Prueba de nuevo. ${err}`))
     }
 
     deleteProduct = () => {
        
         this.productsService
             .deleteProduct(this.state._id)
-            .then(() =>  this.props.history.push('/profile'))
-            .catch(err => console.log('Erroro!!', { err }))
+            .then(() => {
+                this.props.setAlert('ok', `Hemos eliminado el producto de tu tienda.`)
+                this.props.history.push('/profile')
+            })
+            .catch(err => this.props.setAlert('fail', `Ha ocurrido un error. Prueba de nuevo. ${err}`))
     }
 
     render() {

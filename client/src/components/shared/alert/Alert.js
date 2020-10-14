@@ -19,14 +19,14 @@ export default class Alert extends Component {
 
             <Toast
                 onClose={() => this.setState({ visible: false }, this.props.resetAlert)} show={this.state.visible} delay={2000} autohide
-                style={{ position: 'fixed', top: 50, right: "30%", width: '50%', backgroundColor: '#c4f5cd' }}
+                style={{ position: 'fixed', top: 50, right: "20%", width: '50%', backgroundColor: '#c4f5cd' }}
                 >
                     <Toast.Body>{this.props.text}</Toast.Body>
             </Toast>
                 :
                 <Toast
                 onClose={() => this.setState({ visible: false }, this.props.resetAlert)} show={this.state.visible} delay={2000} autohide
-                style={{ position: 'fixed', top: 50, right: "30%", width: '50%', backgroundColor: 'danger' }}
+                style={{ position: 'fixed', top: 50, right: "20%", width: '50%', backgroundColor: '#966569' }}
                 >
                     <Toast.Body>{this.props.text}</Toast.Body>
             </Toast>

@@ -82,7 +82,7 @@ class Profile extends Component {
                         <Modal.Title>Nuevo producto</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <NewProductForm loggedInUser={this.props.loggedInUser} closeModal={() => this.handleModal(false)} refreshList={this.loadProducts} />
+                        <NewProductForm loggedInUser={this.props.loggedInUser} setAlert={this.props.setAlert} closeModal={() => this.handleModal(false)} refreshList={this.loadProducts} />
                     </Modal.Body>
                 </Modal>
 

@@ -23,7 +23,8 @@ class ProductsList extends Component {
             products: [],
             productsToSee: [],
             pages: 0,
-            pageIndex: 0
+            pageIndex: 0,
+            category: 'all'
         }
         this.productsService = new productsService()
     }
@@ -54,20 +55,35 @@ class ProductsList extends Component {
             let final = count * this.state.pageIndex + 6
             newProducts = newProducts.slice(count * this.state.pageIndex, final)
         }
+        else
+        this.setState({ pages: ['']})
         this.setState({ productsToSee: newProducts })
     }
 
     searcher = valor => {
         let { value } = valor.target
 
-        if (value) 
+        if (value && this.state.category === 'all') 
             this.setState(({
                 products: this.state.allProducts.filter((elm) =>
                     elm.name.toLowerCase().includes(value.toLowerCase()))
             }), () => this.pagination())
-        else
-            this.setState({ products: this.state.allProducts }, () => this.pagination())
 
+        else if (value && this.state.category !== 'all') {
+            this.setState(({
+                products: this.state.allProducts.filter((elm) =>
+                elm.category === this.state.category && elm.name.toLowerCase().includes(value.toLowerCase()))
+            }), () => this.pagination())
+        }
+        
+        else if (!value && this.state.category !== 'all') {
+            this.setState({
+                products: this.state.allProducts.filter((elm) =>
+                    elm.category === this.state.category),
+            }, () => this.pagination())
+        }
+        else 
+            this.setState({ products: this.state.allProducts }, () => this.pagination())
     }
 
 
@@ -84,10 +100,11 @@ class ProductsList extends Component {
         if (e.target.value !== 'all')
             this.setState({
                 products: this.state.allProducts.filter((elm) =>
-                    elm.category === e.target.value)
+                    elm.category === e.target.value),
+                category: e.target.value
             }, () => this.pagination())
         else 
-            this.setState({ products: this.state.allProducts }, () => this.pagination()) 
+            this.setState({ products: this.state.allProducts,  category: 'all' }, () => this.pagination()) 
     }
 
     setPage = (e) => {

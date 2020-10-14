@@ -35,10 +35,10 @@ class EditProduct extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
         this.productsService
-            .updateProduct(this.state._id, this.product)
+            .updateProduct(this.state._id, this.state)
             .then(() => {
-                this.props.setAlert('ok', 'Producto editado correctamente')
                 this.getProduct()
+                this.props.setAlert('ok', 'Producto editado correctamente')
             })
             .catch(err => console.log('Erroro!!', { err }))
     }

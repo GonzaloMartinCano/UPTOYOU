@@ -32,9 +32,10 @@ class Signup extends Component {
             .signup(this.state)
             .then(response => {
                 this.props.setTheUser(response.data)
+                this.props.setAlert('ok', ` Hola ${this.state.username}! Tu perfil se ha creado con exito, ya puedes comenzar a comprar!`)
                 this.props.history.push('/')
             })
-            .catch(err => console.log('Erroooooor:', { err }))
+            .catch(err => this.props.setAlert('fail', `Este usuario o contraseña esta en uso, o no cumple las especificaciones. Prueba de nuevo. ${err}`))
     }
 
 
