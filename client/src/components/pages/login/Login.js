@@ -58,7 +58,7 @@ class Login extends Component {
                                     <Form.Label>Contraseña</Form.Label>
                                     <Form.Control type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                                 </Form.Group>
-                                <p>No tienes una cuenta? <Link to={`/signup`} >Registrate aquí.</Link></p><br/>
+                                <p>No tienes una cuenta? <Link style={{color: "green", fontWeight: "600"}} to={`/signup`} >Registrate aquí.</Link></p><br/>
                                 <Button variant="dark" type="submit">Acceder</Button>
                             </Form>
                         </Col>

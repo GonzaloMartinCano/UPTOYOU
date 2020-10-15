@@ -6,8 +6,8 @@ import Nav from 'react-bootstrap/Nav'
 import './Navbar.css' 
 
 import logo from './logo.png'
-import { FiShoppingCart } from 'react-icons/fi';
-import { CgProfile } from 'react-icons/cg';
+import { FiShoppingCart } from 'react-icons/fi'
+import { CgProfile } from 'react-icons/cg'
 
 import authService from './../../../service/auth.service'
 import cartService from '../../../service/cart.service'

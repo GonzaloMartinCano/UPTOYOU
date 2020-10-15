@@ -4,9 +4,7 @@ import { Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import { MdAddShoppingCart } from 'react-icons/md'
 import { CgProfile } from 'react-icons/cg'
-import { AiOutlineStar } from 'react-icons/ai'
 
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import BeautyStars from 'beauty-stars';
 
 
@@ -42,7 +40,7 @@ const ProductCard = ({ _id, name, image, loggedInUser, userID, stock, rating, pr
                     </div>
                     }
           
-                    <p style={{ marginTop: "20px" }}> <BeautyStars value={rating ? rating : 2} size="10px"/> </p>
+                    <div style={{ marginTop: "20px" }}> <BeautyStars value={rating ? rating : 2} size="10px"/> </div>
                 </div>
 
             

@@ -6,7 +6,6 @@ import Button from 'react-bootstrap/Button'
 
 import productsService from '../../../service/products.service'
 import Card from 'react-bootstrap/Card'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
@@ -40,7 +39,7 @@ class DeleteProduct extends Component {
         return (
             <Row>
                 <Col md={{ span: 4, offset: 2 }}>
-                    <h4>¿¿ESTAS SEGURO DE QUERER ELIMINAR ESTE PRODUCTO DE TU TIENDA??</h4>
+                    <h4 style={{ textAlign: 'center' }}>¿¿ESTAS SEGURO DE QUERER ELIMINAR ESTE PRODUCTO DE TU TIENDA??</h4>
                 <Card className="product-card">
                     <Card.Img variant="top" src={this.state.image} />
                     <Card.Body>

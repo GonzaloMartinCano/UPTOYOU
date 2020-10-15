@@ -86,7 +86,7 @@ class App extends Component {
           <Route path="/signup" render={props => <Signup setTheUser={this.setTheUser} setAlert={this.setAlert} {...props} />} />
           <Route path="/login" render={props => <Login setTheUser={this.setTheUser} {...props} setAlert={this.setAlert} />} />
           <Route path="/profile" render={(props) => this.state.loggedInUser ? <Profile loggedInUser={this.state.loggedInUser} setAlert={this.setAlert} {...props} /> : <Redirect to="/login" />} />
-          <Route path="/cart" render={(props) => this.state.loggedInUser ? <Cart loggedInUser={this.state.loggedInUser} loadCart={this.loadCart} {...props} /> : <Redirect to="/login" />} />
+          <Route path="/cart" render={(props) => this.state.loggedInUser ? <Cart loggedInUser={this.state.loggedInUser} loadCart={this.loadCart} setAlert={this.setAlert} {...props} /> : <Redirect to="/login" />} />
 
         </Switch>
         <Footer />

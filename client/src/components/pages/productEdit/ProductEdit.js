@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import Alert from './../../shared/alert/Alert'
-
 
 import productsService from '../../../service/products.service'
 import Container from 'react-bootstrap/esm/Container'
@@ -63,6 +61,10 @@ class EditProduct extends Component {
                     <Form.Group>
                         <Form.Label>Precio</Form.Label>
                         <Form.Control type="text" name="price" value={this.state.price} onChange={this.handleInputChange} />
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Stock</Form.Label>
+                        <Form.Control type="text" name="stock" value={this.state.stock} onChange={this.handleInputChange} />
                     </Form.Group>
 
 

@@ -22,14 +22,14 @@ export default class Alert extends Component {
             {this.props.status === 'ok' ?
 
             <Toast
-                onClose={() => this.setState({ visible: false }, this.props.resetAlert)} show={this.state.visible} delay={2000} autohide
+                onClose={() => this.setState({ visible: false }, this.props.resetAlert)} show={this.state.visible} delay={3000} autohide
                 style={{ position: 'fixed', top: 50, right: "20%", width: '50%', backgroundColor: '#c4f5cd' }}
                 >
                     <Toast.Body><CgCheckO/> {this.props.text}</Toast.Body>
             </Toast>
                 :
                 <Toast 
-                onClose={() => this.setState({ visible: false }, this.props.resetAlert)} show={this.state.visible} delay={2000} autohide
+                onClose={() => this.setState({ visible: false }, this.props.resetAlert)} show={this.state.visible} delay={3000} autohide
                 style={{ position: 'fixed', top: 50, right: "20%", width: '50%', backgroundColor: '#966569' }}
                 >
                     <Toast.Body> <BiErrorCircle/> {this.props.text}</Toast.Body>

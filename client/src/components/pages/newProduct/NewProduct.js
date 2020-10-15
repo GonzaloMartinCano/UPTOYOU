@@ -13,6 +13,7 @@ class NewProduct extends Component {
             description: '',
             price: '',
             image: '',
+            stock: '',
             userID: this.props.loggedInUser ? this.props.loggedInUser._id : ''
         }
         this.productsService = new productsService()
@@ -54,6 +55,11 @@ class NewProduct extends Component {
                 <Form.Group>
                     <Form.Label>Precio</Form.Label>
                     <Form.Control type="text" name="price" value={this.state.price} onChange={this.handleInputChange} />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Stock</Form.Label>
+                    <Form.Control type="text" name="stock" value={this.state.stock} onChange={this.handleInputChange} />
                 </Form.Group>
 
 

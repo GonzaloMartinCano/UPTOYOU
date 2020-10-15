@@ -10,6 +10,17 @@ h1 {
     margin-bottom: 30px;
 }
 
+.profileCard {
+    align-items: center;
+    font-weight: 800;
+    border-color: #c4f5cd;
+    background-color: #d9f8de;
+    box-shadow: 0px 0px 15px 0px #3d6844 ;
+    margin-bottom: 50px;
+    margin-right: 50px;
+    border-radius: 20px;
+}
+
 
 .chekmiproducto  {
     width: 20px;
@@ -56,7 +67,8 @@ h1 {
 .cartbuttons {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    margin-right: 50%;
 }
 
 .profilecartbutton {
@@ -75,15 +87,18 @@ h1 {
 
 .category {
     background-color: white;
-    border: none;
     transition-duration: 2s;
+    border: none;
  }
 
  .category:hover {
-    border: none;
-    background-color: #c4f5cd; 
-    color: black;
+    background-color: #38be51; 
+    color: white;
+    font-weight: 600;
+
   }
+
+
 
   p {
       margin: 0; 
@@ -104,4 +119,19 @@ h1 {
   .page-link {
     color:#22ac3b;
     font-weight: 900;
+    font-size: small;
+  }
+
+ 
+
+  @media (max-width: 900px)  {
+    .cartbuttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 50px;
+        margin-right: 50px;
+        margin-left: 50px;
+    }
+
   }

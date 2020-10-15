@@ -51,7 +51,9 @@ class Cart extends Component {
             })
             .catch(err => console.log('Error:', err))
     }
-
+    confirmacompra = () => {
+        this.props.setAlert('ok', `\n Gracias por registrar tu interes! \n Gracias a personas como tu construiremos un mercado más sostenible`)
+    }
     render() {
         return (
 
@@ -103,8 +105,8 @@ class Cart extends Component {
         <Link to="/products">
             <Button size="sm" variant="dark" style={{ marginTop: '20px' }}>Volver a Inicio</Button>
         </Link>
-        <Link to="/products">
-            <Button size="sm" variant="success" style={{ marginTop: '20px' }}>Confirmar Compra</Button>
+        <Link to="/">
+            <Button onClick={this.confirmacompra} size="sm" variant="success" style={{ marginTop: '20px' }}>Confirmar Compra</Button>
         </Link>
         </div>
         </Container>

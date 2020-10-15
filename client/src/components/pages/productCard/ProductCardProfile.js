@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import Card from 'react-bootstrap/Card'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 import { MdDeleteForever } from 'react-icons/md'
 import { BiEdit } from 'react-icons/bi'

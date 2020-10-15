@@ -4,11 +4,8 @@ import { Link } from 'react-router-dom'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { MdAddShoppingCart } from 'react-icons/md'
-import Alert from './../../shared/alert/Alert'
-
 
 import cartService from '../../../service/cart.service'
 import productsService from '../../../service/products.service'
@@ -59,7 +56,6 @@ class ProductDetails extends Component {
       
     }
 
-
     handleInputChange = e => {
         this.setState( {quantity: e.target.value})
     }
@@ -85,7 +81,7 @@ class ProductDetails extends Component {
                             <Form >
                                 <Form.Group>
                                     <Form.Label>Cantidad</Form.Label>
-                                    <Form.Control  name="quantity" type="number" min="1" max={this.state.product.stock} placeHolder="1" value={this.state.quantity} onChange={this.handleInputChange} />
+                                    <Form.Control  name="quantity" type="number" min="1" max={this.state.product.stock} placeholder="1" value={this.state.quantity} onChange={this.handleInputChange} />
                                 </Form.Group>
                             </Form>
 
@@ -96,11 +92,13 @@ class ProductDetails extends Component {
                     </Row>
                     <Row >
                         <Col  className="cartbuttons">
-                            <Link to="/products" className="btn btn-dark btn-sm">Volver al índice</Link>
-                        
-                            <Button style={{marginRight: '100px'}}  disabled={this.state.uploadingImage} onClick={() => this.addToCart(this.state.quantity)} className="btn btn-success btn-sm">Añadir <MdAddShoppingCart/></Button>
-                        </Col>
-                        <Col>
+                            <Link to="/products" style={{ marginLeft: '16%' }} className="btn btn-dark btn-sm">Volver al índice</Link>
+                            {this.props.loggedInUser
+                                ?
+                            <button style={{marginRight: '100px'}} onClick={() => this.addToCart(this.state.quantity)} className="btn btn-success btn-sm cartbuttonsAñadir">Añadir <MdAddShoppingCart/></button>
+                                :
+                            <Link style={{marginRight: '100px'}} to="/login" className="btn btn-success btn-sm cartbuttonsAñadir">Añadir <MdAddShoppingCart/></Link>   
+                            }
                         </Col>
                     </Row>
                 </main>
