@@ -57,7 +57,7 @@ import cartService from '../../../service/cart.service'
     render() {
         
         return (
-
+            
             <tr>
             <td><Link to={`/products/details/${this.props.refID._id}`}><img style={{width: '100px'}} src={this.props.refID.image} alt={this.props.refID.name}></img></Link></td>
             <td>{this.props.refID.name}</td>

@@ -91,7 +91,7 @@ class ProductDetails extends Component {
                         </Col>
                     </Row>
                     <Row >
-                        <Col  className="cartbuttons">
+                        <Col  className="cartbuttons detailsbuttons">
                             <Link to="/products" style={{ marginLeft: '16%' }} className="btn btn-dark btn-sm">Volver al índice</Link>
                             {this.props.loggedInUser
                                 ?

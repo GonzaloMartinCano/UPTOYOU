@@ -1,11 +1,11 @@
 footer {
     background-image: linear-gradient(0deg, #2BA84A 0%, #ffffff 100%);
+    object-fit: cover;
     color: black;
     font-size: .6em;
     text-align: center;
-    padding: 4px;
     position: fixed;
+    padding: 4px 0px; 
     bottom: 0;
     width: 100%;
-   
 }

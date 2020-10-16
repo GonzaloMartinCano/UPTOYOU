@@ -77,7 +77,7 @@ class Profile extends Component {
                                 <p> Pendientes de envio:</p><br />
                                 <Row>
                                 <ul style={{color: "green"}}>
-                                    <li><a style={{color: "green"}} href="/products/details/5f8098e0616ac95ae7250a9f">Naranajas de Valencia</a></li>
+                                    <li><a style={{color: "green"}} href="/products/details/5f8098e0616ac95ae7250a9f">Naranjas de Valencia</a></li>
                                     <li><a style={{color: "green"}} href="/products/details/5f8098e0616ac95ae7250a9e">Spanish Potatoes</a></li>
                                         <li><a style={{ color: "green" }} href="/products/details/5f8098e0616ac95ae7250aa0">Apples de Murcia</a></li><hr />
                                         <li>TOTAL</li>    

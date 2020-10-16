@@ -14,7 +14,7 @@ const Index = () => {
         <>
             <Container>
                 <div style={{textAlign: "center"}}>
-            <h3 style={{margin: "50px 0px 50px 0px"}}>Bienvenidos al primer market place global que impulsa el mercado local.</h3>
+            <h3 style={{margin: "50px 0px 50px 0px"}}>Bienvenidos al primer MarketPlace global que impulsa el mercado local.</h3>
             <Link to="/products">
                 <Button size="xm" variant="success" style={{ marginTop: '20px' }}>Ver productos</Button>
             </Link>
@@ -25,7 +25,7 @@ const Index = () => {
             <div className="info1">
             <Row className="indexrow">
                     <Col xs={7} md={2}>
-                        <h5>LIBRE </h5>
+                        <h5 style={{marginTop: "77px"}}>LIBRE </h5>
                         <hr/>
                         <p> Marketplace para el intercambio de productos sostenibles. Sin intermediarios. De forma directa entre productores y usuarios. </p>
                     </Col>

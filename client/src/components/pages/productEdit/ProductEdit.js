@@ -75,10 +75,10 @@ class EditProduct extends Component {
                     </Form.Group>
 
                     <Link to="/profile">
-                        <Button size="sm" variant="dark" style={{ marginRight: '20px' }}>Volver a Inicio</Button>
+                        <Button size="sm" variant="dark" style={{ marginRight: '20px',  marginBottom: '50px' }}>Volver a Inicio</Button>
                     </Link>
                     
-                    <Button size="sm" variant="success" type="submit">Confirmar cambios</Button>
+                    <Button  style={{  marginBottom: '50px' }} size="sm" variant="success" type="submit">Confirmar cambios</Button>
                 </Form>
                 
                 </Container>    

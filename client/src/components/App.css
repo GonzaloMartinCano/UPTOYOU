@@ -95,7 +95,11 @@ h1 {
     background-color: #38be51; 
     color: white;
     font-weight: 600;
+    border-radius: 16px;
+  }
 
+  select:focus {
+      outline: none;
   }
 
 
@@ -122,6 +126,10 @@ h1 {
     font-size: small;
   }
 
+  .detailsbuttons {
+    margin-bottom: 50px;
+  }
+
  
 
   @media (max-width: 900px)  {
@@ -132,6 +140,22 @@ h1 {
         margin-bottom: 50px;
         margin-right: 50px;
         margin-left: 50px;
+    }
+    .detailsbuttons {
+        margin-bottom: 50px;
+        margin-right: 0;
+        margin-left: 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .table {
+        width: auto;
+        font-size: 0.6rem;
+
+    }
+    .table img{
+        width: 20px;
     }
 
   }

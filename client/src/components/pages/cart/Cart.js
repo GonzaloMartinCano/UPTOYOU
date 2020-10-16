@@ -6,12 +6,11 @@ import cartService from '../../../service/cart.service'
 
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 
-
 import ProductCardCart from './../productCard/ProductCardCart'
-
 
 
 class Cart extends Component {
@@ -65,7 +64,8 @@ class Cart extends Component {
         <Row>
             {
             this.state.cart.length ?
-            <Table borderless style={{borderRadius: "10px", boxShadow: "0px 0px 15px 0px #c4f5cd"}} >
+            <Table responsive className="mitabla" borderless style={{borderRadius: "10px", boxShadow: "0px 0px 15px 0px #c4f5cd"}} >
+                                        
                 <thead>
                     <tr>
                     <th></th>
@@ -89,14 +89,12 @@ class Cart extends Component {
                                         </td>
                                     
                 </tr>
-                                        
                                 </Table>
                                 
             :
             <h1>Aun no hay productos en tu cesta</h1>
             }
         </Row>
-
 
 
         {/* COMUN PARA TODOS LOS PERFILES */}
